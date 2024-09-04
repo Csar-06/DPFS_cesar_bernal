@@ -31,14 +31,14 @@ const FetchItemScreen = () => {
   return (
     <div>
       <div className='mt-5 mx-2 pt-5'>
-        <h1 className='w-1/2 mt-5 pt-10 m-auto text-center'>Item List</h1>
-        <ul className='mt-6 flex justify-around'>
+        <h1 className='w-1/2 mt-5 pt-10 m-auto text-center font-bold text-5xl'>Item List</h1>
+        <ul className='mt-6 flex justify-center'>
           {items.map(item => (
-            <NavLink to={`/items/${item.id}`} key={item.id}>
-              <li className='mb-4'>
-                <img src={item.image} alt={item.object} style={{ width: '100px', height: '100px' }} />
-                <h2>{item.brand}  {item.model}</h2>
-                <p>${item.price}</p>
+            <NavLink to={`/items/${item.id}`} key={item.id} className='m-2 my-2 h-96 flex rounded-lg bg-slate-200 transition-transform hover:scale-105'>
+              <li className='mb-4 flex flex-col justify-between'>
+                <img src={item.image} alt={item.object} className='rounded-lg' style={{ width: '250px', height: '250px' }} />
+                <h2 className=' ml-3 my-3 text-xl font-semibold '>{item.brand}  {item.model}</h2>
+                <p className='w-1/2 ml-3 text-2xl font-bold align-text-bottom'>${item.price}</p>
               </li>
             </NavLink>
           ))}

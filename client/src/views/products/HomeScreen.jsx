@@ -42,7 +42,7 @@ const HomeScreen = () => {
                     {/* division de productos */}
                     <div className='w-full flex justify-center'>
                         {/* Producto en grande */}
-                        <a href='item' id='item' className='group w-2/5 h-fill mt-11 p-3 bg-slate-300 rounded-xl flex flex-col justify-around items-center backdrop-blur-lg bg-opacity-50'>
+                        <a href='#ofertas' id='item' className='group w-2/5 h-fill mt-11 p-3 bg-slate-300 rounded-xl flex flex-col justify-around items-center backdrop-blur-lg bg-opacity-50'>
                             <img src={image} id='img' alt="Product image" className='p-3 py-6 size-3/6 group-hover:scale-110 transition-transform' />
                             <label className='p-3 py-10 text-3xl font-bold   '>Producto 1</label>
                         </a>
