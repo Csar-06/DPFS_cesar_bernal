@@ -32,6 +32,7 @@ Tengo 21 años y soy aficionado a los videojuegos, mis géneros favoritos son lo
 >[!NOTE]
 >
 > [Wireframes del proyecto](https://drive.google.com/file/d/11MuSwKKPkZWU8ZUxOYGKkJo0Y-DNhkDj/view?usp=sharing)
+> [Tablero de trabajo](https://trello.com/b/6lgv3MVU)
 
 <!-- >[!WARNING]
 > El proyecto se encuentra notoriamente incompleto para la fecha de entrega estipulada...sin embargo, si desea ver los avances realizados tome en cuenta los siguientes puntos:
