@@ -1,0 +1,122 @@
+/* Contenedor principal del formulario */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+}
+
+/* Título */
+.register-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+/* Formulario */
+.register-form {
+    width: 40%;
+    max-width: 400px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #64748b;
+    border-radius: 20px;
+}
+
+/* Etiquetas */
+.register-label {
+    position: relative;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #64748b;
+    margin-bottom: 5px;
+    top: 3rem;
+    left: 1rem;
+    transition: all .1s ease-in-out;
+}
+
+/* Campos de entrada */
+.register-input {
+    height: 45px;
+    padding: 8px;
+    border: 2px solid #94a3b8;
+    border-radius: 8px;
+    transition: border 0.3s ease-in-out;
+    outline: none;
+    margin-bottom: 1rem;
+}
+
+.register-input:focus {
+    border-color: #1e293b;
+}
+
+/* Botón de registro */
+.register-button {
+    height: 45px;
+    background-color: #1e293b;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background-color: #0f172a;
+}
+
+/* Texto de inicio de sesión */
+.register-login {
+    text-align: center;
+    margin-top: 15px;
+    color: #64748b;
+}
+
+/* Enlace de inicio de sesión */
+.login-link {
+    color: #1e293b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+/* 🌎 Responsividad */
+
+/* Pantallas pequeñas */
+@media (max-width: 768px) {
+    .register-form {
+        width: 80%;
+    }
+
+    .register-title {
+        font-size: 2rem;
+    }
+}
+
+/* Pantallas muy grandes */
+@media (min-width: 2560px) {
+    .register-title {
+        font-size: 3rem;
+    }
+
+    .register-form {
+        width: 30%;
+    }
+
+    .register-input {
+        height: 55px;
+        font-size: 1.2rem;
+    }
+
+    .register-button {
+        height: 55px;
+        font-size: 1.2rem;
+    }
+}

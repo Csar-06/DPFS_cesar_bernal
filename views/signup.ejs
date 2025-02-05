@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/signup-styles.css' />
+</head>
+
+<body>
+  <%- include('partials/navbar')%>
+
+    <div class="register-container">
+
+      <h1 class="register-title">Create Your Nexxus Account</h1>
+
+      <form class="register-form" action="/signup" method="POST">
+
+        <label for="email" id="emailLabel" class="register-label">Email</label>
+        <input type="email" id="email" name="email" class="register-input" required />
+
+        <label for="password" id="passwordLabel" class="register-label">Password</label>
+        <input type="password" id="password" name="password" class="register-input" required />
+
+        <label for="confirmPassword" id="passwordValidationLabel" class="register-label">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" class="register-input" required />
+
+        <button type="submit" class="register-button">SIGN UP</button>
+
+        <p class="register-login">
+          Already have an account?
+          <a href="/login" class="login-link">Log in</a>
+        </p>
+
+      </form>
+
+    </div>
+
+    <script src="/javascripts/labelEvent.js"></script>
+
+</body>
+
 </html>

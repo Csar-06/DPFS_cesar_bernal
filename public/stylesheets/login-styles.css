@@ -1,0 +1,140 @@
+/* Contenedor principal del formulario */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25vh;
+}
+
+/* Título */
+.login-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+/* Formulario */
+.login-form {
+    width: 40%;
+    max-width: 400px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #64748b;
+    border-radius: 20px;
+}
+
+/* Etiquetas */
+.login-label {
+    position: relative;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #64748b;
+    margin-bottom: 5px;
+    top: 3rem;
+    left: 1rem;
+    transition: all .1s ease-in-out;
+}
+
+/* Campos de entrada */
+.login-input {
+    height: 45px;
+    padding: 8px;
+    border: 2px solid #94a3b8;
+    border-radius: 8px;
+    transition: border 0.0s ease-in-out;
+    outline: none;
+    margin-bottom: 1rem;
+}
+
+.login-input:focus {
+    border-color: #1e293b;
+}
+
+/* Enlace para recuperar contraseña */
+.login-forgot-password {
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.login-forgot-password a {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-forgot-password a:hover {
+    color: #1e293b;
+    text-decoration: underline;
+}
+
+/* Botón de login */
+.login-button {
+    height: 45px;
+    background-color: #1e293b;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #0f172a;
+}
+
+/* Texto de registro */
+.login-signup {
+    text-align: center;
+    margin-top: 15px;
+    color: #64748b;
+}
+
+/* Enlace de registro */
+.signup-link {
+    color: #1e293b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+/* 🌎 Responsividad */
+
+/* Pantallas pequeñas */
+@media (max-width: 768px) {
+    .login-form {
+        width: 80%;
+    }
+
+    .login-title {
+        font-size: 2rem;
+    }
+}
+
+/* Pantallas muy grandes */
+@media (min-width: 2560px) {
+    .login-title {
+        font-size: 3rem;
+    }
+
+    .login-form {
+        width: 30%;
+    }
+
+    .login-input {
+        height: 55px;
+        font-size: 1.2rem;
+    }
+
+    .login-button {
+        height: 55px;
+        font-size: 1.2rem;
+    }
+}
