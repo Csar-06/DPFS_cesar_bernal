@@ -1,0 +1,275 @@
+/* Slider */
+.slider-container {
+    position: relative;
+    top: 64px;
+    /* border-radius: 8px; */
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    /* justify-content: start; */
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.05);
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(0, 0, 0, 0);
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50px;
+    transition: all .3s ease-out;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(50px);
+
+}
+
+.carousel-next {
+    right: 0px;
+}
+
+/* Sección de Ofertas */
+.ofertas-section {
+    margin-top: 96px;
+    margin-bottom: 24px;
+    /* margin: 8px; */
+    max-width: 100%;
+}
+
+.ofertas-title {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Contenedor de productos */
+.ofertas-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.ofertas-content {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Producto en grande */
+.producto-grande {
+    width: 80%;
+    height: auto;
+    margin: auto;
+    margin-top: 8%;
+    padding: 4%;
+    background-color: rgb(227, 233, 240); /* bg-slate-300 con opacidad */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.producto-img {
+    padding: 12px;
+    padding-top: 24px;
+    width: 50%;
+    transition: transform 0.3s;
+}
+
+.producto-grande:hover .producto-img,
+.producto-mosaico:hover .producto-img {
+    transform: scale(1.1);
+}
+
+.producto-label {
+    padding: 24px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Productos en mosaico */
+.productos-mosaico {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    justify-content: center;
+    align-items: center;
+}
+
+.producto-mosaico {
+    width: 30%;
+    margin: 12px;
+    padding: 12px;
+    background-color: rgb(227, 233, 240); /* bg-slate-300 con opacidad */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Menú de categorías */
+/* .menu-categorias ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    margin: 20px 0;
+}
+
+.menu-categorias li {
+    padding: 8px;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-radius: 16px;
+}
+
+.active-tab {
+    background-color: #e2e8f0;
+} */
+
+/* Vista Celular M-L */
+@media(min-width: 325px) and (max-width: 426px) {
+
+    /* Seccion Ultimas Ofertas */
+    .producto-mosaico {
+        width: 34%;
+
+    }
+}
+
+/* Vista Tablet */
+@media(min-width: 768px) {
+
+    /* Slider */
+    .carousel {
+        display: flex;
+        justify-content: start;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide {
+        width: 100%;
+        height: 69vh;
+        object-fit: cover;
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        padding: 25% 1% 25% 1%;
+        border-radius: 0;
+    }
+
+  
+}
+
+/* Vistas Laptop-PC */
+@media(min-width: 1024px) {
+
+    /* carrusel */
+    .slider-container {
+        height: 92vh;
+    }
+
+    .carousel {
+        display: flex;
+        justify-content: start;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide {
+        height: auto;
+        object-fit: cover;
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        padding: 40% 1% 40% 1%;
+        border-radius: 0;
+    }
+
+    /* seccion ultimas ofertas */
+    .ofertas-section {
+        margin-top: 7rem;
+    }
+
+    .ofertas-container {
+        margin: 3rem 0 0 0;
+    }
+
+    .ofertas-content {
+        flex-direction: row;
+    }
+
+    /* Producto en grande */
+    .producto-grande {
+        height: 100%;
+        margin: auto 0 auto 0;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .producto-img {
+        padding-bottom: 24px;
+    }
+
+    .productos-mosaico {
+        margin: auto 0 auto 0;
+    }
+
+    .producto-mosaico {
+        width: 17vw;
+    }
+
+
+}
+
+@media(min-width: 1440px){
+
+    .slider-container {
+        height: 94vh;
+    }
+
+    .carousel-slide {
+        width: 100vw;
+        height: 130vh;
+    }
+}
+
+@media(min-width:2560px)  {
+    .slider-container {
+        height: 100vh;
+    }
+
+    .carousel {
+        width: 200vw;
+    }
+}

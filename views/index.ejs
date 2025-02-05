@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+  <html lang="es">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Home</title>
+      <link rel="stylesheet" href="/stylesheets/style.css"> <!-- Archivo de estilos CSS -->
+      <link rel="stylesheet" href="stylesheets/index-styles.css"> <!-- Archivo de estilos CSS -->
+    
+  </head>
+  <body>
+    
+      <%- include('partials/navbar') %>
+      <!-- Sección de slider al iniciar la web -->
+      <div class="slider-container">
+        <div class="carousel">
+            <% slides.forEach((slide, index) => { %>
+                <video class="carousel-slide" src="<%= slide %>" autoplay muted loop></video>
+            <% }) %>
+        </div>
+        <button class="carousel-prev">&#10094;</button>
+        <button class="carousel-next">&#10095;</button>
+    </div>
+  
+      <!-- Sección de Ofertas -->
+      <section id="ofertas" class="ofertas-section">
+          <h2 class="ofertas-title">Últimas Ofertas</h2>
+          <div class="ofertas-container">
+              <div class="ofertas-content">
+                  
+                  <!-- Producto en grande -->
+                  <a href="#ofertas" id="item" class="producto-grande">
+                      <img src="images/vite.svg" id="img" alt="Product image" class="producto-img" />
+                      <label class="producto-label">Producto 1</label>
+                  </a>
+  
+                  <!-- Productos en mosaico -->
+                  <div class="productos-mosaico">
+                      <% for (let i = 2; i <= 5; i++) { %>
+                          <a href="#ofertas" class="producto-mosaico">
+                              <img src="images/vite.svg" alt="Product image" class="producto-img" />
+                              <label class="producto-label">Producto <%= i %></label>
+                          </a>
+                      <% } %>
+                  </div>
+  
+                  <!-- Menú de categorías -->
+                  <!-- <div class="menu-categorias">
+                      <ul>
+                          <li>
+                              <a href="#ofertas">
+                                  <ion-icon name="phone-portrait-outline"></ion-icon>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="#ofertas">
+                                  <ion-icon name="headset-outline"></ion-icon>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="#ofertas">
+                                  <ion-icon name="construct-outline"></ion-icon>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="#ofertas">
+                                  <ion-icon name="color-wand-outline"></ion-icon>
+                              </a>
+                          </li>
+                      </ul>
+                  </div> -->
+              </div>
+          </div>
+      </section>
+  
+      <%- include('partials/footer') %>
+
+      <script src="javascripts/carousel.js"></script>
+  </body>
+  </html>

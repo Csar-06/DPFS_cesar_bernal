@@ -1,0 +1,71 @@
+/* Estilos generales de la barra de navegación */
+nav {
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    top: 0;
+    z-index: 10;
+}
+
+/* Contenedor principal del navbar */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 8px;
+    backdrop-filter: blur(75px);
+    z-index: 50;
+    background-color: rgba(203, 213, 225, 0.3); /* bg-slate-300 con opacidad */
+}
+
+/* Marca o logo */
+.nav-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Estilos de la lista de enlaces */
+.nav-links {
+    display: flex;
+    gap: 20px;
+    font-weight: 500;
+}
+
+/* Enlaces de la barra de navegación */
+.nav-links a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #1e293b; /* Un tono más oscuro al pasar el mouse */
+}
+
+/* 🌎 Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+}
+
+/* 🌎 Estilos para pantallas extra grandes (mayores a 2560px) */
+@media (min-width: 2560px) {
+    .nav-brand {
+        font-size: 2rem;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+}
