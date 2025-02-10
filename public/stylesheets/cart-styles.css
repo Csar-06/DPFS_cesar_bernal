@@ -1,0 +1,135 @@
+/* Contenedor principal del carrito */
+.cart-container {
+    min-height: 75vh;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Título */
+.cart-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+/* Grid del carrito */
+.cart-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 80%;
+}
+
+/* Sección de productos */
+.cart-products {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Producto individual */
+.cart-product {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #94a3b8;
+    border-radius: 10px;
+    /* background-color: rgb(227, 233, 240);  */
+    /* bg-slate-300 con opacidad */
+    
+}
+
+.cart-product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.cart-product-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-product-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1e293b;
+}
+
+.cart-product-size, .cart-product-quantity, .cart-product-price {
+    font-size: 1rem;
+    color: #475569;
+}
+
+/* Placeholder para mostrar mínimo 2 productos */
+.cart-placeholder {
+    padding: 20px;
+    text-align: center;
+    font-style: italic;
+    color: #64748b;
+    border: 1px dashed #94a3b8;
+    border-radius: 10px;
+}
+
+/* Resumen del pedido */
+.cart-summary {
+    margin: 0 1rem 8rem;
+    padding: 20px;
+    border: 1px solid #94a3b8;
+    border-radius: 10px;
+    flex: 1;
+    justify-content: center;
+}
+
+.cart-summary-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cart-summary-item {
+    font-size: 1rem;
+    color: #475569;
+}
+
+.cart-summary-total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1e293b;
+    margin-top: 10px;
+}
+
+.cart-checkout-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #1e293b;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.cart-checkout-button:hover {
+    background-color: #0f172a;
+}
+
+/* 🌎 Responsividad */
+
+/* Móviles */
+@media (max-width: 768px) {
+    .cart-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Pantallas muy grandes */
+@media (min-width: 2560px) {
+    .cart-container {
+        width: 50%;
+    }
+}

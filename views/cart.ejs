@@ -1,11 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/cart-styles.css' />
+</head>
+
+<body>
+  <%- include("partials/navbar")%>
+  <div class="cart-container">
+    <h1 class="cart-title">Shopping Cart</h1>
+
+    <div class="cart-grid">
+      <!-- Sección de productos -->
+      <div class="cart-products">
+        <% if (products.length===0) { %>
+          <p class="cart-empty">Your cart is empty.</p>
+          <% } else { %>
+            <% products.forEach((product)=> { %>
+              <div class="cart-product">
+                <img src="<%= product.image %>" alt="<%= product.name %>" class="cart-product-image">
+                <div class="cart-product-info">
+                  <h2 class="cart-product-name">
+                    <%= product.name %>
+                  </h2>
+                  <p class="cart-product-size">Size: <%= product.size %>
+                  </p>
+                  <p class="cart-product-quantity">Quantity: <%= product.quantity %>
+                  </p>
+                  <p class="cart-product-price">$<%= product.price.toFixed(2) %>
+                  </p>
+                </div>
+              </div>
+              <% }); %>
+                <% } %>
+
+                  <!-- Asegurar que haya al menos 2 productos -->
+                  <% if (products.length < 2) { %>
+                    <div class="cart-placeholder">Add more products to your cart!</div>
+                    <% } %>
+      </div>
+
+      <!-- Resumen de orden -->
+      <div class="cart-summary">
+        <h2 class="cart-summary-title">Order Summary</h2>
+        <p class="cart-summary-item">Subtotal: $<%= subtotal.toFixed(2) %>
+        </p>
+        <p class="cart-summary-item">Shipping: $<%= shipping.toFixed(2) %>
+        </p>
+        <p class="cart-summary-item">Taxes: $<%= taxes.toFixed(2) %>
+        </p>
+        <hr>
+        <p class="cart-summary-total">Total: $<%= total.toFixed(2) %>
+        </p>
+        <button class="cart-checkout-button">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+
+</body>
+
 </html>
