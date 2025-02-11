@@ -1,0 +1,77 @@
+[
+    {
+        "id": "1",
+        "brand": "Google",
+        "model": "Pixel 8",
+        "description": "El Google Pixel 8 ofrece una experiencia Android pura con una potente cámara y un rendimiento optimizado por inteligencia artificial.",
+        "image": "images/phones/google-pixel-8.png",
+        "render": "/3dObjects/google_pixel_8.glb",
+        "price": 699,
+        "colors": [
+            "black",
+            "gray",
+            "pink   "
+        ]
+    },
+    {
+        "id": "2",
+        "brand": "Apple",
+        "model": "iPhone 15",
+        "description": "El iPhone 15 incorpora el nuevo chip A16 Bionic, un diseño elegante y una cámara mejorada.",
+        "image": "images/phones/iphone-15.png",
+        "render": "/3dObjects/iphone_15_azul.glb",
+        "price": 799,
+        "colors": [
+            "black",
+            "papayawhip",
+            "paleturquoise",
+            "pink",
+            "gold"
+        ]
+    },
+    {
+        "id": "3",
+        "brand": "Apple",
+        "model": "iPhone 15 Pro",
+        "description": "El iPhone 15 Pro cuenta con un chasis de titanio, el potente chip A17 Pro y una cámara con teleobjetivo mejorado.",
+        "image": "images/phones/iphone-15-pro.png",
+        "render": "/3dObjects/apple_iphone_15_pro_black.glb",
+        "price": 999,
+        "colors": [
+            "black",
+            "papayawhip",
+            "steelblue",
+            "burlywood"
+        ]
+    },
+    {
+        "id": "4",
+        "brand": "Samsung",
+        "model": "Galaxy S21 Ultra",
+        "description": "El Samsung Galaxy S21 Ultra ofrece una pantalla Dynamic AMOLED de 120Hz y un sistema de cámaras de 108 MP.",
+        "image": "images/phones/galaxy-s21-ultra.png",
+        "render": "/3dObjects/samsung_galaxy_s21_ultra.glb",
+        "price": 1199,
+        "colors": [
+            "black",
+            "slategrey",
+            "steelblue",
+            "darkred"
+        ]
+    },
+    {
+        "id": "5",
+        "brand": "Samsung",
+        "model": "Galaxy S22 Ultra",
+        "description": "El Samsung Galaxy S22 Ultra viene con S-Pen integrado, un diseño premium y un rendimiento excepcional.",
+        "image": "images/phones/galaxy-s22-ultra.png",
+        "render": "/3dObjects/samsung_galaxy_s22_ultra.glb",
+        "price": 1299,
+        "colors": [
+            "black",
+            "white",
+            "darkred",
+            "darkolivegreen"
+        ]
+    }
+]

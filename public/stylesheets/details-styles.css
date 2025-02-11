@@ -40,6 +40,9 @@ body {
     padding: 20px;
     text-align: center;
 }
+.product-info h3, h2{
+    margin: .5rem 0;
+}
 
 .colors {
     display: flex;

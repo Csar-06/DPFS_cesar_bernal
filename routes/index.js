@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', {
+  res.render('./users/index', {
     slides: [
       '/video/iphone-promo.mp4',
       '/video/EDZN0157.mp4']
@@ -21,7 +21,7 @@ router.get('/signup', function (req, res, next) {
 router.get('/cart', function (req, res, next) {
   const products = [
     { image: "images/vite.svg", name: "Galaxy Buds3", size: "M", quantity: 1, price: 32.00 },
-    { image: "images/vite.svg", name: "Wireless Charger", size: "L", quantity: 1, price: 45.00 }
+    // { image: "images/vite.svg", name: "Wireless Charger", size: "L", quantity: 1, price: 45.00 }
   ];
 
   const subtotal = products.reduce((sum, product) => sum + product.price, 0);

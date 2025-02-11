@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Celulares</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/fetch-styles.css">
+    
+</head>
+
+<body>
+    
+    <%- include('../partials/navbar') %>
+    <div class="container">
+        <h1 class="title">Lista de Celulares</h1>
+        <ul class="item-list">
+
+            <% 
+            phones.forEach(phone=> { %>
+                <li class="item">
+                    <a href="/phones/id/<%= phone.id%>">
+                        <img src="<%= phone.image %>" alt="<%= phone.model %>" class="item-image">
+                        <h2 class="item-title">
+                            <%= phone.brand %>
+                                <%= phone.model %>
+                        </h2>
+                        <p class="item-price">$<%= phone.price %>
+                        </p>
+                    </a>
+                </li>
+                <% }); %>
+        </ul>
+    </div>
+    <%- include('../partials/footer') %>
+</body>
+
+</html>
