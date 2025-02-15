@@ -11,11 +11,11 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/login', function (req, res, next) {
-  res.render('login', { title: 'Login' });
+  res.render('users/login', { title: 'Login' });
 });
 
 router.get('/signup', function (req, res, next) {
-  res.render('signup', { title: 'Signup' });
+  res.render('users/signup', { title: 'Signup' });
 });
 
 router.get('/cart', function (req, res, next) {
@@ -29,13 +29,8 @@ router.get('/cart', function (req, res, next) {
   const taxes = subtotal * 0.1;
   const total = subtotal + shipping + taxes;
 
-  res.render('cart', {title: "Cart", products, subtotal, shipping, taxes, total });
+  res.render('users/cart', {title: "Cart", products, subtotal, shipping, taxes, total });
 
 });
-
-router.get('/item/:id', function (req, res, next) {
-  res.render('details', { title: 'Details' });
-});
-
 
 module.exports = router;
