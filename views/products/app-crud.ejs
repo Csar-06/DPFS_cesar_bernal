@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/header')%>
+
+<head>
+    <link rel="stylesheet" href="../../stylesheets/products/crud-styles.css">
+    <title>
+        <%= title%>
+    </title>
+</head>
+
+<body>
+
+    <h1>
+        <%= title%>
+    </h1>
+
+    <div class="container">
+
+        <a href="/products/new-item-form">
+            <button class="create-btn">
+                &#10010; Create
+            </button>
+        </a>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Colors</th>
+                    <th>Stock</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% phones.forEach(item=> { %>
+                    <tr>
+                        <td>
+                            <%= item.id %>
+                        </td>
+                        <td>
+                            <%= item.brand %>
+                        </td>
+                        <td>
+                            <%= item.model %>
+                        </td>
+                        <td>
+                            <%= item.description.substring(0, 50) + '...' %>
+                        </td>
+                        <td>
+                            <img src="../../<%= item.image %>" alt="<%= item.brand%> <%= item.model%>">
+                        </td>
+                        <td>
+                            <%= item.colors.join(', ') %></td>
+                        <td><%= item.stock %></td>
+                        <td><%= item.price %></td>
+                        <td class="actions">
+                            <a href="./products/mod-item-form/item-<%= item.id%>">
+                            <button class="btn-mod">
+                                    Mod
+                                </button>
+                            </a>
+                            <form method="POST" action="/deleteItem/<%= item.id %>" style="display:inline;">
+                                <button type="submit" class="btn-del">Del</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,110 @@
+/* Mobile First */
+.container {
+    max-width: 100%;
+    padding: 16px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.form {
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 96%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.image-preview{
+    padding: 10px;
+    width: 96%;
+    height: 50%;
+}
+
+.preview-img{
+    width: 25%;
+}
+
+.color-input {
+    display: flex;
+    gap: 8px;
+}
+
+.color-input input {
+    flex: 1;
+}
+
+.color-input button {
+    background-color: #4f46e5;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.color-input button:hover {
+    background-color: #4338ca;
+}
+
+.form-actions {
+    text-align: right;
+}
+
+.form-actions button {
+    background-color: #4f46e5;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-actions button:hover {
+    background-color: #4338ca;
+}
+
+/* Tablets */
+@media (min-width: 640px) {
+    .form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+/* Escritorio */
+@media (min-width: 1024px) {
+    .form {
+        max-width: 600px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+}

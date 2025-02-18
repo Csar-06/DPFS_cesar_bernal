@@ -1,4 +1,4 @@
-[
+    [
     {
         "id": "1",
         "brand": "Google",
@@ -11,7 +11,8 @@
             "black",
             "gray",
             "pink   "
-        ]
+        ],
+        "stock": 100
     },
     {
         "id": "2",
@@ -27,7 +28,8 @@
             "paleturquoise",
             "pink",
             "gold"
-        ]
+        ],
+        "stock": 100
     },
     {
         "id": "3",
@@ -42,7 +44,8 @@
             "papayawhip",
             "steelblue",
             "burlywood"
-        ]
+        ],
+        "stock": 100
     },
     {
         "id": "4",
@@ -57,7 +60,8 @@
             "slategrey",
             "steelblue",
             "darkred"
-        ]
+        ],
+        "stock": 100
     },
     {
         "id": "5",
@@ -72,6 +76,7 @@
             "white",
             "darkred",
             "darkolivegreen"
-        ]
+        ],
+        "stock": 100
     }
 ]

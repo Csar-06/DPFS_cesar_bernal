@@ -1,0 +1,159 @@
+h1{
+    margin: 1rem 2%;
+    font-size: xxx-large;
+}
+
+img{
+    width: 100%;
+}
+/* Estilos base (Mobile First) */
+.create-btn{
+    width: 18%;
+    position: relative;
+    left: 82%;
+    margin: 1rem 0;
+    padding: .5rem 1.5rem;
+    border-radius: 15px;
+    border-color: limegreen;
+    border-style: solid;
+    background-color: limegreen;
+    color: white;
+    transition: all .2s;
+}
+.create-btn:hover{
+    border-color: green;
+    background-color: green;
+}
+
+.container {
+    max-width: 100%;
+    padding: 16px;
+    margin: 0 auto;
+}
+
+/* Tabla */
+.table {
+    width: 100%;
+    background-color: white;
+    border-collapse: collapse;
+    font-size: 14px; /* Tamaño más adecuado para móviles */
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: .25rem;
+    text-align: center;
+}
+
+.table th {
+    background-color: #f3f4f6;
+    font-weight: bold;
+}
+
+/* Acciones (Botones) */
+.actions {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-mod, .btn-del {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    border: 2px solid;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    max-width: 120px;
+    text-align: center;
+}
+
+.btn-mod {
+    color:#ffe02e   ;
+    border-color: #ffe02e;
+    background: none;
+}
+.btn-mod a {
+    /* padding: 5px; */
+    text-decoration: none;
+    color: #ffe02e;
+}
+
+
+
+.btn-mod:hover, .btn-mod a:hover {
+    background-color: #ffe02e;
+    color: white;
+}
+
+.btn-del {
+    color: #dc2626;
+    border-color: #dc2626;
+    background: none;
+}
+
+.btn-del:hover {
+    background-color: #dc2626;
+    color: white;
+}
+
+/* 📌 Media Queries para pantallas más grandes */
+@media (min-width: 640px) { /* Tablets */
+
+    .table {
+        font-size: 16px;
+    }
+
+    .table th, .table td {
+        padding: .4 rem;
+    }
+
+    .actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .btn-mod, .btn-del {
+        width: auto;
+    }
+}
+
+@media (min-width: 1024px) { /* Escritorio */
+    h1{
+        margin: 1rem 2%;
+    }
+    .create-btn{
+        width: 12%;  
+        left: 88%; 
+    }
+    .container {
+        max-width: 1200px;
+    }
+
+    .table th, .table td {
+        padding: 1rem;
+    }
+
+    .btn-mod, .btn-del {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
+
+@media (min-width: 1440px) { /* Escritorio */
+
+    h1{
+        margin: 1rem 8%;
+    }
+    .create-btn{
+        width: 10%;  
+        left: 90%; 
+    }
+    .table th, .table td {
+        padding: 1.5rem;
+    }
+
+}

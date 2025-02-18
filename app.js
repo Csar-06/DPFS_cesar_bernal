@@ -8,6 +8,7 @@ const fs = require('fs').promises;
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 let phonesRoutes = require('./routes/phones')
+let productsRoutes = require('./routes/products')
 
 var app = express();
 
@@ -27,6 +28,7 @@ console.log(path.join(__dirname,'public'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/phones', phonesRoutes);
+app.use('/products', productsRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

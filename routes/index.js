@@ -4,6 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('./users/index', {
+    title: 'Landing page',
     slides: [
       '/video/iphone-promo.mp4',
       '/video/EDZN0157.mp4']

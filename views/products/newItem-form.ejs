@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<%- include('../partials/header')%>
+
+    <head>
+        <link rel="stylesheet" href="../../stylesheets/products/newItem-form-styles.css">
+    </head>
+
+    <body>
+
+        <div class="container">
+            <h1 class="title">
+                <%= title%>
+            </h1>
+
+            <form action="#" method="POST" class="form">
+                <div class="form-group">
+                    <label for="brand">Brand</label>
+                    <input type="text" id="brand" name="brand" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <input type="text" id="model" name="model" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Subir Imagen</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                </div>
+                
+                <div class="form-group">
+                    <label for="render">Render URL</label>
+                    <input type="text" id="render" name="render">
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Stock</label>
+                    <input type="text" id="quantity" name="quantity">
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" id="price" name="price">
+                </div>
+
+                <div class="form-group">
+                    <label for="colors">Colors</label>
+                    <div class="color-input">
+                        <input type="text" id="newColor" name="newColor" placeholder="Añadir color">
+                        <button type="button" id="addColor">Añadir</button>
+                    </div>
+                    <ul id="colorList">
+
+
+                    </ul>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit">
+                        Crear Producto
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            document.getElementById('addColor').addEventListener('click', function () {
+                const newColorInput = document.getElementById('newColor');
+                const colorList = document.getElementById('colorList');
+
+                if (newColorInput.value.trim() !== '') {
+                    const li = document.createElement('li');
+                    li.textContent = newColorInput.value;
+                    colorList.appendChild(li);
+                    newColorInput.value = '';
+                }
+            });
+        </script>
+
+    </body>
+
+</html>
