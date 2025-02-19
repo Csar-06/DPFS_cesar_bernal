@@ -15,7 +15,7 @@ let phonesControllers = {
          
          try {
            
-           let src = path.join(__dirname, '../DB/phones.json');
+           let src = path.join(__dirname, '../DB/products.json');
            const data = await leerJSON(src);
            
            let jsonString = JSON.stringify(data)
@@ -30,7 +30,7 @@ let phonesControllers = {
 
    show: (req, res) =>{
      const id = req.params.id
-      const src = path.join(__dirname, '../DB/phones.json');
+      const src = path.join(__dirname, '../DB/products.json');
     
       // Leer el archivo listado.json
       fs.readFile(src, 'utf8', (err, data) => {
@@ -55,7 +55,8 @@ let phonesControllers = {
                     }
                   });
               }
-    
+              console.log(item.render);
+              
               // Renderizar la vista y pasar el objeto del celular
               res.render('./users/details', { title: 'Detalles del Producto', item });
     

@@ -16,7 +16,7 @@ const productController = {
     
         try {
     
-            let src = path.join(__dirname, '../DB/phones.json');
+            let src = path.join(__dirname, '../DB/products.json');
             console.log(src);
     
             const data = await leerJSON(src);
@@ -39,7 +39,7 @@ const productController = {
     },
     edit:(req, res) => {
         const id = req.params.id
-        const src = path.join(__dirname, '../DB/phones.json');
+        const src = path.join(__dirname, '../DB/products.json');
     
         // Leer el archivo listado.json
         fs.readFile(src, 'utf8', (err, data) => {

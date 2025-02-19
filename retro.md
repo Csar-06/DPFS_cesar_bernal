@@ -1,4 +1,20 @@
+# Sprint No.3
+
+### 1. Comenzar a hacer.
+
+### 2. Hacer más.
+   >Mantener la concentración en los requerimientos y funcionalidades especificados para el avance del proyecto.
+### 3. Continuar haciendo.
+   >Continuar con el uso de herramientas y documentación para retroalimentación.
+   >Mantener un cronograma o las funciones clave marcadas para un avance más fluido.
+### 4. Hacer menos.
+   >Preocuparme por los detalles. Los mismos se pueden guardar para fases posteriores del proyecto.
+### 5. Dejar de hacer.
+   > 
+
+---
 # Sprint No.2
+
 
 ### 1.  Comenzar a hacer.
    >Eliminar distracciones y concentrarme en las funcionalidades centrales o más importantes para el avance del proyecto, dejando los detalles para fases posteriores

@@ -5,79 +5,74 @@
 
   <head>
     <link rel='stylesheet' href='/stylesheets/details-styles.css' />
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="../../javascripts/model-validation.js"></script>
+    <script src="/javascripts/product-details.js"></script>
   </head>
 
   <body>
-    <!-- views/productDetail.ejs -->
-    <!DOCTYPE html>
-    <html lang="en">
 
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Product Detail</title>
-      <link rel="stylesheet" href="/css/style.css">
-      <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    </head>
+    <%- include('../partials/navbar') %>
 
-    <body>
-      <%- include('../partials/navbar') %>
+      <div class="container">
+        <main class="product-detail">
+          <div class="product-container">
+            <!-- Modelo 3D -->
+            <div class="model-viewer">
+              <model-viewer src="<%= item.render %>" alt="3D Model" auto-rotate camera-controls style="height: 400px;">
+              </model-viewer>
+              <img id="fallback-image" src="../../<%= item.image %>" alt="Product Image"
+                style="height: 400px; display: none;">
+            </div>
 
-        <div class="container">
-          <main class="product-detail">
-            <div class="product-container">
-              <!-- Modelo 3D -->
-              <div class="model-viewer">
-                <model-viewer src="<%= item.render %>" alt="3D Model" auto-rotate camera-controls
-                  style="height: 400px;"></model-viewer>
+
+            <div class="product-info">
+              <h3>
+                <%= item.brand %>
+              </h3>
+              <h2>
+                <%= item.model %>
+              </h2>
+              <p>
+                <%= item.description %>
+              </p>
+
+              <!-- Colores disponibles -->
+              <div class="colors">
+                <% item.colors.forEach(color=> { %>
+                  <div class="color-circle">
+                    <div class="color-area" style="background: <%= color %>"></div>
+                  </div>
+                  <% }) %>
               </div>
 
-              <div class="product-info">
-                <h3>
-                  <%= item.brand %>
-                </h3>
-                <h2>
-                  <%= item.model %>
-                </h2>
-                <p>
-                  <%= item.description %>
-                </p>
-
-                <!-- Colores disponibles -->
-                <div class="colors">
-                  <% item.colors.forEach(color=> { %>
-                    <div class="color-circle">
-                      <div class="color-area" style="background: <%= color %>"></div>
-                    </div>
-                    <% }) %>
+              <!-- Control de cantidad -->
+              <div class="quantity-price">
+                <div class="quantity-selector">
+                  <button id="decrease">-</button>
+                  <span id="quantity">1</span>
+                  <button id="increase">+</button>
                 </div>
-
-                <!-- Control de cantidad -->
-                <div class="quantity-price">
-                  <div class="quantity-selector">
-                    <button id="decrease">-</button>
-                    <span id="quantity">1</span>
-                    <button id="increase">+</button>
-                  </div>
-                  <div class="price">$<%= item.price %>
-                  </div>
+                <div class="price">$<%= item.price %>
                 </div>
+              </div>
 
 
-                <!-- Botones de acción -->
-                <div class="actions">
-                  <button class="add-to-cart">Add to Cart</button>
-                  <button class="buy-now">Buy</button>
-                </div>
+              <!-- Botones de acción -->
+              <div class="actions">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy</button>
               </div>
             </div>
-          </main>
-        </div>
+          </div>
+        </main>
+      </div>
 
-        <script src="/javascripts/product-details.js"></script>
-        <%- include('../partials/footer') %>
+     
+      <%- include('../partials/footer') %>
 
 
-    </body>
+  </body>
 
-    </html>
+
+</html>
