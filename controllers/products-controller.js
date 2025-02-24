@@ -1,79 +1,49 @@
 const path = require('path');
 const fs = require('fs');
 
-const productController = {
-    index: async (req, res) => {
-    
-    
-        let leerJSON = async (src) => {
-            try {
-                const data = await fs.readFileSync(src, 'utf-8');
-                return JSON.parse(data);
-            } catch (error) {
-                console.error('Error al leer el archivo JSON: ', error);
-            }
-        }
-    
-        try {
-    
-            let src = path.join(__dirname, '../DB/products.json');
-            console.log(src);
-    
-            const data = await leerJSON(src);
-    
-            let jsonString = JSON.stringify(data)
-            let phones = JSON.parse(jsonString)
-    
-            res.render('./products/app-crud', { title: 'CRUD', phones })
-    
-        } catch (error) {
-            res.status(500).json({ error: 'Error al obtener telefonos' });
-        }
+const productsFilePath = path.join(__dirname, '../DB/products.json');
+const getProducts = () => JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+
+const productsController = {
+ index: (req, res) => {
+        const products = getProducts();
+        res.render('./products/index', { title: 'CRUD', products });
     },
-    create:(req, res) => {
-        try {
-            res.render('./products/newItem-form', { title: 'Create Item' })
-        } catch (error) {
-            res.status(500).send('Error al cargar página');
-        }
+    create: (req, res) => {
+        res.render('products/create', {title: 'Create Product'});
     },
-    edit:(req, res) => {
-        const id = req.params.id
-        const src = path.join(__dirname, '../DB/products.json');
-    
-        // Leer el archivo listado.json
-        fs.readFile(src, 'utf8', (err, data) => {
-            if (err) {
-                console.error("Error al leer el archivo JSON:", err);
-                return res.status(500).send("Error interno del servidor");
-            }
-    
-            try {
-                const phones = JSON.parse(data);
-                // Buscar el celular que coincida con el ID
-                const item = phones.find(phone =>
-                    phone.id === id
-                );
-    
-                if (!item) {
-                    return res.status(404).render("error", {
-                        error: {
-                            message: 'Error al cargar pagina',
-                            status: '404 Not Found',
-                            stack: 'No se encontro el producto',
-                        }
-                    });
-                }
-                // Renderizar la vista y pasar el objeto del celular
-                res.render('./products/modItem-form', { title: 'Modify item', item });
-    
-            } catch (parseError) {
-                console.error("Error al analizar JSON:", parseError);
-                return res.status(500).send("Error interno del servidor");
-            }
-        })
+    show: (req, res) => {
+        const products = getProducts();
+        const product = products.find(p => p.id == req.params.id);
+        res.render('products/show', { title: product.brand+' '+product.model, product });
+    },
+    store: (req, res) => {
+        const products = getProducts();
+        const newProduct = {
+            id: products.length + 1,
+            ...req.body
+        };
+        products.push(newProduct);
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
+        res.redirect('/products');
+    },
+    edit: (req, res) => {
+        const products = getProducts();
+        const product = products.find(p => p.id == req.params.id);
+        res.render('products/edit', {title: 'Edit Product', product });
+    },
+    update: (req, res) => {
+        let products = getProducts();
+        products = products.map(p => p.id == req.params.id ? { ...p, ...req.body } : p);
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
+        res.redirect('/products');
+    },
+    destroy: (req, res) => {
+        let products = getProducts();
+        products = products.filter(p => p.id != req.params.id);
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
+        res.redirect('/products');
     }
+};
 
-}
-
-module.exports = productController
+module.exports = productsController

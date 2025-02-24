@@ -40,7 +40,9 @@ body {
     padding: 20px;
     text-align: center;
 }
-.product-info h3, h2{
+
+.product-info h3,
+h2 {
     margin: .5rem 0;
 }
 
@@ -62,14 +64,14 @@ body {
     z-index: -1;
 }
 
-.color-area{
+.color-area {
     width: 21px;
     height: 21px;
     border-radius: 50%;
     z-index: 100;
 }
 
-.quantity-price{
+.quantity-price {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -103,22 +105,75 @@ body {
     margin-top: 1rem;
 }
 
-.add-to-cart, .buy-now {
+.border-btn,
+.fill-btn,
+.btn-del,
+.btn-mod {
     padding: 10px 20px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.add-to-cart {
+.border-btn {
     background-color: #fff;
     border: 2px solid #1e293b;
     color: #1e293b;
 }
 
-.buy-now {
+.fill-btn {
     background-color: #1e293b;
     color: #fff;
+}
+
+.controls {
+    width: 80%;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1rem;
+
+}
+
+.btn-mod,
+.btn-del {
+    font-size: 14px;
+    border: 2px solid;
+    transition: 0.3s;
+    width: 100%;
+    max-width: 120px;
+    text-align: center;
+}
+
+.btn-mod {
+    color: #ffe02e;
+    border-color: #ffe02e;
+    background: none;
+}
+
+.btn-mod a {
+    /* padding: 5px; */
+    color: #ffe02e;
+}
+
+
+
+.btn-mod:hover,
+.btn-mod a:hover {
+    background-color: #ffe02e;
+    color: white;
+}
+
+.btn-del {
+    color: #dc2626;
+    border-color: #dc2626;
+    background: none;
+}
+
+.btn-del:hover {
+    background-color: #dc2626;
+    color: white;
 }
 
 /* Responsive */

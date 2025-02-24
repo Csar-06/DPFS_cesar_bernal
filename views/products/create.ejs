@@ -15,7 +15,7 @@
                 <%= title%>
             </h1>
 
-            <form action="#" method="POST" class="form">
+            <form action="/products/    " method="POST" class="form">
                 <div class="form-group">
                     <label for="brand">Brand</label>
                     <input type="text" id="brand" name="brand" required>
@@ -54,8 +54,8 @@
                 <div class="form-group">
                     <label for="colors">Colors</label>
                     <div class="color-input">
-                        <input type="text" id="newColor" name="newColor" placeholder="Añadir color">
-                        <button type="button" id="addColor">Añadir</button>
+                        <input type="text" id="colors" name="colors" placeholder="Añadir color">
+                        
                     </div>
                     <ul id="colorList">
 
@@ -72,8 +72,8 @@
         </div>
 
         <script>
-            document.getElementById('addColor').addEventListener('click', function () {
-                const newColorInput = document.getElementById('newColor');
+            document.addEventListener("DOMContentLoaded", function () {
+                const newColorInput = document.getElementById('colors');
                 const colorList = document.getElementById('colorList');
 
                 if (newColorInput.value.trim() !== '') {

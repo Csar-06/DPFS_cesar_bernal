@@ -3,9 +3,9 @@ h1{
     font-size: xxx-large;
 }
 
-img{
+td img{
     width: 100%;
-}
+    }
 /* Estilos base (Mobile First) */
 .create-btn{
     width: 18%;

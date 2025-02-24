@@ -21,7 +21,7 @@
             <div class="model-viewer">
               <model-viewer src="<%= item.render %>" alt="3D Model" auto-rotate camera-controls style="height: 400px;">
               </model-viewer>
-              <img id="fallback-image" src="../../<%= item.image %>" alt="Product Image"
+              <img id="fallback-image" src="../../<%= item.src%><%= item.image %>" alt="Product Image"
                 style="height: 400px; display: none;">
             </div>
 
@@ -39,7 +39,8 @@
 
               <!-- Colores disponibles -->
               <div class="colors">
-                <% item.colors.forEach(color=> { %>
+                <% let colors=item.colors.split(",") 
+                colors.forEach(color=> { %>
                   <div class="color-circle">
                     <div class="color-area" style="background: <%= color %>"></div>
                   </div>
@@ -60,15 +61,15 @@
 
               <!-- Botones de acción -->
               <div class="actions">
-                <button class="add-to-cart">Add to Cart</button>
-                <button class="buy-now">Buy</button>
+                <button class="border-btn">Add to Cart</button>
+                <button class="fill-btn">Buy</button>
               </div>
             </div>
           </div>
         </main>
       </div>
 
-     
+
       <%- include('../partials/footer') %>
 
 

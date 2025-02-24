@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<%- include('../partials/header')%>
+
+    <head>
+        <link rel="stylesheet" href="../../stylesheets/products/edit-styles.css">
+    </head>
+
+    <body>
+
+        <div class="container">
+            <h1 class="title">
+                <%= title%>
+            </h1>
+
+            <form action="/products/<%= product.id%>?_method=PUT" method="POST" class="form">
+                <div class="form-group">
+                    <label for="brand">Brand</label>
+                    <input type="text" id="brand" name="brand" value="<%= product ? product.brand : '' %>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <input type="text" id="model" name="model" value="<%= product ? product.model : '' %>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <textarea id="description" name="description" rows="4"
+                        required><%= product ? product.description : '' %></textarea>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="image">Imagen del Producto</label>
+                    
+                    <% if (product && product.image) { %>
+                        <div class="image-preview">
+                            <img src="../../<%= product.src+product.image %>" alt="Imagen del producto" class="preview-img">
+                        </div>
+                        <p>Si deseas reemplazarla, sube una nueva imagen:</p>
+                    <% } %>
+        
+                    <input type="file" id="image" name="image" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Stock</label>
+                    <input type="text" id="quantity" name="quantity" value="<%= product ? product.stock : '' %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" id="price" name="price" value="<%= product ? product.price : '' %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="colors">Colors</label>
+                    <ul id="colorList">
+                        <% if (product && product.colors) { %>
+                            <% let colors = product.colors.split(",")
+                            colors.forEach(color=> { %>
+                                <li>
+                                    <%= color %>
+                                </li>
+                                <% }) %>
+                                <% } %>
+                            </ul>
+                            <div class="color-input">
+                                <input type="text" id="colors" name="colors" placeholder="Añadir color">
+                                <!-- <button type="button" id="addColor">Añadir</button> -->
+                            </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" onclick="return confirm(' ¿Desea guardar cambios?')"> 
+                        <%= product ? 'Actualizar Producto' : 'Crear Producto' %>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            
+            document.addEventListener("DOMContentLoaded", function () {
+                const newColorInput = document.getElementById('colors');
+                let colorList = document.getElementById('colorList');
+                let cListData = document.querySelectorAll('#colorList li');
+                //  console.log(colorList);
+                 JSON.stringify()
+                // colorList.forEach(c=> console.log(c))    x
+                
+                if (newColorInput.value.trim() !== '') {
+                    const li = document.createElement('li');
+                    li.textContent = newColorInput.value;
+                    colorList.appendChild(li);
+                    newColorList = [...cListData, li]
+                    console.log(newColorList);
+                    
+                    colorList = newColorList.map(c=> {
+                        console.log(c.outerText.trim())
+                        return c.outerText
+                    })
+                    // colorList = JSON.stringify(json)
+                    console.log(colorList);
+                    // colorList = newColorList;
+                    // console.log(colorList);
+                    newColorInput.value = colorList;
+                    // console.log(newColorList);
+                    
+                    
+                    
+                }
+            });
+        </script>
+
+
+    </body>
+
+</html>
