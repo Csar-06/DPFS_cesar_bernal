@@ -3,40 +3,47 @@
 
 <%- include('../partials/header')%>
 
-<head>
-  <link rel='stylesheet' href='/stylesheets/login-styles.css' />
-</head>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/login-styles.css' />
+  </head>
 
-<body>
-  <%- include('../partials/navbar')%>
+  <body>
+    <%- include('../partials/navbar')%>
 
-  <div class="login-container">
+      <div class="login-container">
 
-    <h1 class="login-title">Sign In To Nexxus</h1>
+        <h1 class="login-title">Sign In To Nexxus</h1>
 
-    <form class="login-form" action="/login" method="POST">
+        <form class="login-form" action="/users/login" method="POST">
 
-      <label for="email" id="emailLabel" class="login-label">Email</label>
-      <input type="email" id="email" name="email" class="login-input" required />
+          <label for="email" id="emailLabel" class="login-label">Email</label>
+          <input type="email" id="email" name="email" class="login-input" required />
 
-      <label for="password" id="passwordLabel" class="login-label">Password</label>
-      <input type="password" id="password" name="password" class="login-input" required />
+          <label for="password" id="passwordLabel" class="login-label">Password</label>
+          <input type="password" id="password" name="password" class="login-input" required />
 
-      <p class="login-forgot-password">
-        <a href="/forgot-password">¿Forgot your password?</a>
-      </p>
+          <p class="login-forgot-password">
+            <a href="/forgot-password">¿Forgot your password?</a>
+          </p>
 
-      <button type="submit" class="login-button">LOGIN</button>
+          <!-- Mostrar mensaje de error si existe -->
+          <% if (error) { %>
+            <p class="error">
+              <%= error %>
+            </p>
+            <% } %>
+            
+              <button type="submit" class="login-button">LOGIN</button>
 
-      <p class="login-signup">
-        ¿Don't have an account?
-        <a href="/signup" class="signup-link">Sign up</a>
-      </p>
+              <p class="login-signup">
+                ¿Don't have an account?
+                <a href="/users/signup" class="signup-link">Sign up</a>
+              </p>
 
-    </form>
+        </form>
 
-  </div>
-<script src="javascripts/labelEvent.js"></script>
-</body>
+      </div>
+      <script src="/javascripts/labelEvent.js"></script>
+  </body>
 
 </html>

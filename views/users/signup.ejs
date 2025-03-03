@@ -1,43 +1,67 @@
 <!DOCTYPE html>
 <html>
 
-<%- include('../partials/header')%>
+<%- include('../partials/header') %>
 
-<head>
-  <link rel='stylesheet' href='/stylesheets/signup-styles.css' />
-</head>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/signup-styles.css' />
+  </head>
 
-<body>
-  <%- include('../partials/navbar')%>
+  <body>
+    <%- include('../partials/navbar') %>
 
-    <div class="register-container">
+      <div class="register-container">
 
-      <h1 class="register-title">Create Your Nexxus Account</h1>
+        <h1 class="register-title">Create Your Nexxus Account</h1>
 
-      <form class="register-form" action="/signup" method="POST">
+        <form class="register-form" action="/users/signup" method="POST" enctype="multipart/form-data">
+          
+          <% if (error) { %>
+            <p class="error">
+              <%= error %>
+            </p>
+            <% } %>
 
-        <label for="email" id="emailLabel" class="register-label">Email</label>
-        <input type="email" id="email" name="email" class="register-input" required />
+              <label for="firstName" class="register-label" id="nameLabel">First Name</label>
+              <input type="text" id="firstName" name="firstName" class="register-input" required />
 
-        <label for="password" id="passwordLabel" class="register-label">Password</label>
-        <input type="password" id="password" name="password" class="register-input" required />
+              <label for="lastName" class="register-label" id="lNameLabel">Last Name</label>
+              <input type="text" id="lastName" name="lastName" class="register-input" required />
 
-        <label for="confirmPassword" id="passwordValidationLabel" class="register-label">Confirm Password</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" class="register-input" required />
+              <label for="email" class="register-label" id="emailLabel">Email</label>
+              <input type="email" id="email" name="email" class="register-input" required />
 
-        <button type="submit" class="register-button">SIGN UP</button>
+              <label for="password" class="register-label" id="passwordLabel">Password</label>
+              <input type="password" id="password" name="password" class="register-input" required />
 
-        <p class="register-login">
-          Already have an account?
-          <a href="/login" class="login-link">Log in</a>
-        </p>
+              <label for="confirmPassword" class="register-label" id="passwordValidationLabel">Confirm Password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" class="register-input" required />
 
-      </form>
+              <label for="avatar" id="pictureLabel">Profile Picture</label>
+              <input type="file" id="avatar" name="avatar" class="register-input" accept="image/*" />
 
-    </div>
+              <button type="submit" class="register-button">SIGN UP</button>
 
-    <script src="/javascripts/labelEvent.js"></script>
+              <p class="register-login">
+                Already have an account?
+                <a href="/users/login" class="login-link">Log in</a>
+              </p>
+        </form>
+      </div>
 
-</body>
+      <script src="/javascripts/labelEvent.js"></script>
+      <!-- <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const labels = Array.from(document.querySelectorAll(".register-label"));
+          const inputs = Array.from(document.querySelectorAll(".register-input"));
+          
+          const matchedPairs = labels.map((label, index) => {
+            return inputs[index] ? { label, input: inputs[index] } : null;
+          }).filter(pair => pair !== null);
+          
+          console.log(matchedPairs);
+        });
+      </script> -->
+  </body>
 
 </html>

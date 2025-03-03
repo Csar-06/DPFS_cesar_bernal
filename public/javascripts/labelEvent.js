@@ -1,73 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
-    moveEmailLabel();
-    movePasswordLabel();
-    movePasswordValidationLabel();
+
+    moveLabel();
 });
 
-// Función para mover el label del email
-function moveEmailLabel() {
-    const label = document.getElementById("emailLabel");
-    const email = document.getElementById("email");
+//Función para mover labels en formularios
+function moveLabel() {
+    const labels = Array.from(document.querySelectorAll(".register-label, .login-label"));
+    const inputs = Array.from(document.querySelectorAll(".register-input, .login-input"));
 
-    if (!label || !email) return;
+    const matchedPairs = labels.map((label, index) => {
+        return inputs[index] ? { label, input: inputs[index] } : null;
+    }).filter(pair => pair !== null);
 
-    email.addEventListener("focus", () => {
-        label.style.top = "0px";
-        label.style.left = "0px";
-        label.style.color = "#020617";
-    });
+    console.log(matchedPairs);
 
-    email.addEventListener("blur", () => {
-        if (!email.value) {
-            label.style.top = "3rem";
-            label.style.left = "1rem";
-            label.style.color = "rgb(107 114 128)";
-        }
-    });
-}
+    matchedPairs.forEach(mp => {
+        // console.log(mp.input.id);
+        // console.log(mp.input.value);
 
-// Función para mover el label de la contraseña
-function movePasswordLabel() {
-    const label = document.getElementById("passwordLabel");
-    const password = document.getElementById("password");
-    
+        if (!mp.label || !mp.input) return;
 
-    if (!label || !password) return;
+        mp.input.addEventListener("focus", () => {
+            mp.label.style.top = "0px";
+            mp.label.style.left = "0px";
+            mp.label.style.color = "#020617";
+        });
 
-    password.addEventListener("focus", () => {
-        label.style.top = "0px";
-        label.style.left = "0px";
-        label.style.color = "#020617";
-    });
+        mp.input.addEventListener("blur", () => {
+            if (!mp.input.value) {
+                mp.label.style.top = "3rem";
+                mp.label.style.left = "1rem";
+                mp.label.style.color = "rgb(107 114 128)";
+            }
+        });
 
-    password.addEventListener("blur", () => {
-        if (!password.value) {
-            label.style.top = "3rem";
-            label.style.left = "1rem";
-            label.style.color = "rgb(107 114 128)";
-        }
-    });
-}
+    })
 
-// Función para mover el label de la validación de contraseña
-function movePasswordValidationLabel() {
-    const label = document.getElementById("passwordValidationLabel");
-    
-    const password = document.getElementById("confirmPassword");
 
-    if (!label || !password) return;
 
-    password.addEventListener("focus", () => {
-        label.style.top = "0px";
-        label.style.left = "0px";
-        label.style.color = "#020617";
-    });
-
-    password.addEventListener("blur", () => {
-        if (!password.value) {
-            label.style.top = "3rem";
-            label.style.left = "1rem";
-            label.style.color = "rgb(107 114 128)";
-        }
-    });
 }

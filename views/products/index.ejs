@@ -16,6 +16,10 @@
             <%= title%>
         </h1>
 
+        
+        
+        <a href="/logout">Cerrar sesión</a>
+
         <div class="container">
 
             <a href="/products/create">
@@ -75,8 +79,10 @@
                                         Mod
                                     </button>
                                 </a>
-                                <form action="/products/<%= item.id %>?_method=DELETE" method="POST" style="display:inline;">
-                                    <button type="submit" class="btn-del" onclick="return confirm(' ¿Estás seguro de eliminar este producto?')">
+                                <form action="/products/<%= item.id %>?_method=DELETE" method="POST"
+                                    style="display:inline;">
+                                    <button type="submit" class="btn-del"
+                                        onclick="return confirm(' ¿Estás seguro de eliminar este producto?')">
                                         Del
                                     </button>
                                 </form>

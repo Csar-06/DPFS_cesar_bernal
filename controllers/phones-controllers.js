@@ -21,7 +21,7 @@ let phonesControllers = {
            let jsonString = JSON.stringify(data)
            let phones = JSON.parse(jsonString)
            
-           res.render('./users/fetch-phones', { title: "Phones", phones });
+           res.render('./index/fetch-phones', { title: "Phones", phones });
        
          } catch (error) {
            res.status(500).json({error: 'Error al obtener telefonos'});
@@ -58,7 +58,7 @@ let phonesControllers = {
               console.log(item.render);
               
               // Renderizar la vista y pasar el objeto del celular
-              res.render('./users/details', { title: 'Detalles del Producto', item });
+              res.render('./index/details', { title: 'Detalles del Producto', item });
     
           } catch (parseError) {
               console.error("Error al analizar JSON:", parseError);
