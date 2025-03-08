@@ -1,0 +1,144 @@
+
+nav {
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-container {
+    /* width: 100%; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-brand {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  /* 🔹 Botón de menú (hamburguesa) */
+  .menu-toggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    display: block;
+  }
+  
+  /* 🔹 Estilos del menú en móviles (oculto por defecto) */
+  .nav-links {
+    list-style: none;
+    position: absolute;
+    top: 60px;
+    margin: auto;
+    width: 92%;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    display: none;
+    flex-direction: column;
+  }
+  
+  .nav-links li {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #f3f3f3;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: block;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #007bff;
+  }
+  
+  /* 🔹 Mostrar el menú cuando esté activo */
+  .nav-links.active {
+    display: flex;
+  }
+  
+  /* 🔹 Avatar de usuario */
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  /* 🔹 Dropdown de usuario */
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    padding: 8px 0;
+    min-width: 120px;
+  }
+  
+  .dropdown-menu li {
+    padding: 8px 15px;
+    text-align: left;
+  }
+  
+  .dropdown-menu li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+  }
+  
+  .dropdown-menu li a:hover {
+    background-color: #f3f3f3;
+  }
+  
+  /* 🔹 Mostrar el menú del usuario al pasar el mouse */
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  /* 🔹 Estilos para pantallas grandes (Desktop) */
+  @media (min-width: 768px) {
+    .menu-toggle {
+      display: none; /* Ocultar el botón de hamburguesa */
+    }
+
+    .nav-container{
+        gap:2rem
+    }
+  
+    .nav-links {
+      position: static;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      background: none;
+      box-shadow: none;
+    }
+  
+    .nav-links li {
+      border: none;
+    }
+  }
+  

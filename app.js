@@ -29,8 +29,13 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false } // 60 minutos de sesión
 }));
+app.use((req,res,next)=>{
+  res.locals.user = req.session.user || null; //si no hay sesión, user será null
+  next();
+})
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use(methodOverride('_method'))
 console.log(path.join(__dirname,'public'));
 

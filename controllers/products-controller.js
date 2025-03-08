@@ -5,17 +5,17 @@ const productsFilePath = path.join(__dirname, '../data/products.json');
 const getProducts = () => JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const productsController = {
- index: (req, res) => {
+    index: (req, res) => {
         const products = getProducts();
         res.render('./products/index', { title: 'CRUD', products });
     },
     create: (req, res) => {
-        res.render('products/create', {title: 'Create Product'});
+        res.render('products/create', { title: 'Create Product' });
     },
     show: (req, res) => {
         const products = getProducts();
         const product = products.find(p => p.id == req.params.id);
-        res.render('products/show', { title: product.brand+' '+product.model, product });
+        res.render('products/show', { title: product.brand + ' ' + product.model, product });
     },
     store: (req, res) => {
         const products = getProducts();
@@ -30,7 +30,7 @@ const productsController = {
     edit: (req, res) => {
         const products = getProducts();
         const product = products.find(p => p.id == req.params.id);
-        res.render('products/edit', {title: 'Edit Product', product });
+        res.render('products/edit', { title: 'Edit Product', product });
     },
     update: (req, res) => {
         let products = getProducts();

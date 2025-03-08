@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/header')%>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/users/profile-styles.css">
+    </head>
+
+    <body>
+        <%- include('../partials/navbar')%>
+        <div class="user-profile">
+            <div class="header-bg"></div>
+            <div class="content">
+              <div class="avatar-container">
+                <img src="<%= user.avatar ||'../images/users/user.png' %>" 
+                     alt="<%= user.name + ' ' + user.surname %>" 
+                     class="avatar" />
+              </div>
+          
+              <div class="user-info">
+                <h1 class="user-name">
+                  <%= user.firstName %> <%= user.lastName %>
+                </h1>
+          
+                <div class="details">
+                  <div class="detail-item">
+                    <ion-icon name="mail-outline" class="icon"></ion-icon>
+                    <span><%= user.email %></span>
+                  </div>
+          
+                  <div class="detail-item">
+                    <ion-icon name="calendar-clear-outline" class="icon"></ion-icon>
+                    <span>Member since <%= user.joinDate %></span>
+                  </div>
+                </div>
+          
+                <div class="actions">
+                  <button class="edit-btn">Edit Profile</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%- include('../partials/footer')%>
+          
+    </body>
+
+</html>

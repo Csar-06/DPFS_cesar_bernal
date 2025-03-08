@@ -1,0 +1,123 @@
+/* Estilos base (mobile-first) */
+.user-profile {
+    width: 100%;
+    max-width: 380px;
+    margin: 20vh auto;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    /* border: 1px solid #f3f3f3; */
+  }
+  
+  .header-bg {
+    height: 96px;
+    background-color: #1e293b;
+  }
+  
+  .content {
+    padding: 16px;
+    position: relative;
+  }
+  
+  .avatar-container {
+    position: absolute;
+    top: -64px;
+    left: 16px;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid white;
+    background-color: white;
+  }
+  
+  .avatar {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .user-info {
+    margin-top: 64px;
+  }
+  
+  .user-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+  
+  .details {
+    margin-top: 16px;
+    color: #4b5563;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .icon {
+    width: 18px;
+    height: 18px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  
+  
+  .bio-section {
+    margin-top: 24px;
+  }
+  
+  .bio-title {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    font-weight: 500;
+  }
+  
+  .bio-text {
+    margin-top: 8px;
+    color: #4b5563;
+  }
+  
+  .actions {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #f3f3f3;
+  }
+  
+  .edit-btn {
+    width: 100%;
+    padding: 8px 16px;
+    background-color: white;
+    color: #1e293b;
+    border-radius: 6px;
+    border: solid 3px #1e293b;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .edit-btn:hover {
+    background-color: #1e293b;
+    color: white;
+  }
+  
+  /* Estilos responsivos */
+  @media (min-width: 640px) {
+    .user-profile {
+      max-width: 420px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .user-profile {
+      max-width: 480px;
+    }
+  }
+  
