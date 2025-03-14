@@ -1,71 +1,83 @@
-const path = require('path');
-const fs = require('fs');
+const db = require('../database/models');
 
 let phonesControllers = {
-    index: async (req, res) => {
-        
-        let leerJSON = async (src) => {
-           try {
-             const data = await fs.readFileSync(src, 'utf-8');
-             return JSON.parse(data);
-           } catch (error) {
-             console.error('Error al leer el archivo JSON: ', error);
-           }
-         }
-         
-         try {
-           
-           let src = path.join(__dirname, '../data/products.json');
-           const data = await leerJSON(src);
-           
-           let jsonString = JSON.stringify(data)
-           let phones = JSON.parse(jsonString)
-           
-           res.render('./index/fetch-phones', { title: "Phones", phones });
-       
-         } catch (error) {
-           res.status(500).json({error: 'Error al obtener telefonos'});
-         }
-   } , 
+  index: async (req, res) => {
 
-   show: (req, res) =>{
-     const id = req.params.id
-      const src = path.join(__dirname, '../data/products.json');
-    
-      // Leer el archivo listado.json
-      fs.readFile(src, 'utf8', (err, data) => {
-          if (err) {
-              console.error("Error al leer el archivo JSON:", err);
-              return res.status(500).send("Error interno del servidor");
-          }
-    
-          try {
-              const phones = JSON.parse(data);          
-              // Buscar el celular que coincida con el ID
-              const item = phones.find(phone => 
-                  phone.id === id
-              );
-    
-              if (!item) {
-                  return res.status(404).render("error",{
-                    error:{
-                      message: 'Error al cargar pagina',
-                      status: '404 Not Found',
-                      stack: 'No se encontro el producto',
-                    }
-                  });
-              }
-              console.log(item.render);
-              
-              // Renderizar la vista y pasar el objeto del celular
-              res.render('./index/details', { title: 'Detalles del Producto', item });
-    
-          } catch (parseError) {
-              console.error("Error al analizar JSON:", parseError);
-              return res.status(500).send("Error interno del servidor");
-          }
-      });
-   },
+    db.Product.findAll({ // metodo para llamar todas las col de una tabla
+      // Consulta anidada (JOIN) de productos junto a su marca y modelo
+      include: [
+        {
+          model: db.Brand,
+          required: true,
+          attributes: ['brand_name'] //col del nombre de la marca
+        },
+        {
+          model: db.Model,
+          required: true,
+          attributes: ['model'] // col del modelo
+        },
+      ],
+      order: [['id', 'ASC']],
+      raw: true,
+      nest: true // Para que los resultados sean más estructurados
+    })
+      .then((data) => {
+        if (!data) {
+          res.status(404).send('No se encuentran Productos')
+        }
+        // return res.send(data)
+        // console.log(data);
+        const phones = data;
+        res.render('./index/fetch-phones', { title: "Phones", phones });
+      })
+      .catch((e) => {
+        console.log(e);
+        return res.send(e);
+      })
+  },
+
+  show: (req, res) => {
+    const id = req.params.id
+    db.Product.findByPk(id, {// metodo para filtrar producto por PK, en este caso el id.
+      // Consulta anidada (JOIN) de 1 producto junto a su marca, modelo y colores del producto
+      include: [
+        {
+          model: db.Brand,
+          required: true,
+          attributes: ['brand_name'] // marca del telefono
+        },
+        {
+          model: db.Model,
+          required: true,
+          attributes: ['model'] // nombre del modelo de telefono
+        },
+        {
+          model: db.ProductColor,
+          required: true,
+          include: [{
+            model: db.Color,
+            required: true,
+            attributes: ['color'] //col nombre del color
+          }]
+        },
+      ],
+      order: [['id', 'ASC']],
+      
+    })
+      .then((data) => {
+        if (!data) {
+          res.status(404).send('Producto no encontrado')
+        }
+        // return res.send(data)
+        const colors = data.ProductColors.map(pc => pc.Color.color)        
+        const item = data;
+        res.render('./index/details', { title: 'Detalles del Producto', item, colors });
+      })
+      .catch((e) => {
+        console.log(e);
+        return res.send(e);
+      })
+  },
 }
 
 module.exports = phonesControllers

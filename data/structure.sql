@@ -1,0 +1,113 @@
+CREATE DATABASE nexxusDB;
+USE nexxusDB;
+
+-- Tabla de Usuarios
+CREATE TABLE USERS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    join_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    avatar VARCHAR(255)
+);
+
+-- Tabla de Roles
+CREATE TABLE ROLES (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    role_name VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- Relación Usuario - Rol (Muchos a Muchos)
+CREATE TABLE USER_ROLES (
+    user_id INT,
+    role_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, role_id),
+    FOREIGN KEY (user_id) REFERENCES USERS(id) ON DELETE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES ROLES(id) ON DELETE CASCADE
+);
+
+-- Tabla de Marcas
+CREATE TABLE BRANDS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    brand_name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Tabla de Modelos
+CREATE TABLE MODELS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    brand_id INT,
+    model VARCHAR(100) NOT NULL UNIQUE,
+    FOREIGN KEY (brand_id) REFERENCES BRANDS(id) ON DELETE CASCADE
+);
+
+-- Tabla de Productos
+CREATE TABLE PRODUCTS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    brand_id INT,
+    description TEXT NOT NULL,
+    image VARCHAR(255),
+    render VARCHAR(255),
+    unit_price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (brand_id) REFERENCES BRANDS(id) ON DELETE CASCADE
+);
+
+-- Tabla de Colores
+CREATE TABLE COLORS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    color VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- Relación Producto - Color
+CREATE TABLE PRODUCT_COLOR (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    color_id INT,
+    stock INT NOT NULL DEFAULT 0,
+    UNIQUE (product_id, color_id),
+    FOREIGN KEY (product_id) REFERENCES PRODUCTS(id) ON DELETE CASCADE,
+    FOREIGN KEY (color_id) REFERENCES COLORS(id) ON DELETE CASCADE
+);
+
+-- Tabla del Carrito de Compras
+CREATE TABLE CART (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    quantity INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES USERS(id) ON DELETE CASCADE
+);
+
+-- Relación entre Carrito y Productos
+CREATE TABLE PRODUCT_CART (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cart_id INT,
+    product_id INT,
+    UNIQUE (cart_id, product_id),
+    FOREIGN KEY (cart_id) REFERENCES CART(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES PRODUCT_COLOR(id) ON DELETE CASCADE
+);
+
+-- Tabla de Órdenes
+CREATE TABLE ORDERS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    total_price DECIMAL(10,2) NOT NULL,
+    status ENUM('pending', 'completed', 'canceled') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES USERS(id) ON DELETE CASCADE
+);
+
+-- Detalles de las Órdenes
+CREATE TABLE ORDERS_DETAILS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES ORDERS(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES PRODUCT_COLOR(id) ON DELETE CASCADE
+);

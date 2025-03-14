@@ -21,17 +21,17 @@
             <div class="model-viewer">
               <model-viewer src="<%= item.render %>" alt="3D Model" auto-rotate camera-controls style="height: 400px;">
               </model-viewer>
-              <img id="fallback-image" src="../../<%= item.src%><%= item.image %>" alt="Product Image"
+              <img id="fallback-image" src="<%= item.image %>" alt="Product Image"
                 style="height: 400px; display: none;">
             </div>
 
 
             <div class="product-info">
               <h3>
-                <%= item.brand %>
+                <%= item.Brand.brand_name %>
               </h3>
               <h2>
-                <%= item.model %>
+                <%= item.Model.model %>
               </h2>
               <p>
                 <%= item.description %>
@@ -39,7 +39,7 @@
 
               <!-- Colores disponibles -->
               <div class="colors">
-                <% let colors=item.colors.split(",") 
+                <% 
                 colors.forEach(color=> { %>
                   <div class="color-circle">
                     <div class="color-area" style="background: <%= color %>"></div>
@@ -54,7 +54,7 @@
                   <span id="quantity">1</span>
                   <button id="increase">+</button>
                 </div>
-                <div class="price">$<%= item.price %>
+                <div class="price">$<%= item.unit_price %>
                 </div>
               </div>
 

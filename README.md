@@ -18,6 +18,7 @@ Nuestra oferta se ajustará a ese público mediante la venta de celulares reacon
 Tengo 21 años y soy aficionado a los videojuegos, mis géneros favoritos son los RPG, Fighting Games y shooters. Fuertemente atraído al arte popular, la animación y la música. En el ámbito de desarrollo, me llama más la atención el desarrollo en el área backend, para retarme a utilizar mis capacidades, busco ser una persona pensante y razonable, trato de ser versátil y adquirir conocimientos en otras áreas de desarrollo.
 
 ---
+> [!NOTE]
 > ## SITIOS DE REFERENCIA
 > * Elegí las paginas de grandes compañias de celulares como gran fuente de inspiración, gracias a sus páginas minimalistas, diseños limpios, sencillos y modernos. Sumado a algunas tiendas en línea, como guias/ejemplos de diseño.
 > * [Apple](https://www.apple.com/)
@@ -29,10 +30,11 @@ Tengo 21 años y soy aficionado a los videojuegos, mis géneros favoritos son lo
 > * [Amazon](https://www.amazon.com/ref=nav_logo)
 
 
->[!NOTE]
->
-> [Wireframes del proyecto](https://drive.google.com/file/d/11MuSwKKPkZWU8ZUxOYGKkJo0Y-DNhkDj/view?usp=sharing)
-> [Tablero de trabajo](https://trello.com/b/6lgv3MVU)
+>   [!IMPORTANT]
+>   ## Entregables
+> - [Wireframes del proyecto](https://drive.google.com/file/d/11MuSwKKPkZWU8ZUxOYGKkJo0Y-DNhkDj/view?usp=sharing)
+> - [Tablero de trabajo](https://trello.com/b/6lgv3MVU)
+> - [Diagrama ER](https://drive.google.com/file/d/1nHobdNAS5iDj5PGov3kECufhdFSUqJXm/view?usp=sharing)
 
 <!-- >[!WARNING]
 > El proyecto se encuentra notoriamente incompleto para la fecha de entrega estipulada...sin embargo, si desea ver los avances realizados tome en cuenta los siguientes puntos:

@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
+
 const productsFilePath = path.join(__dirname, '../data/products.json');
 const getProducts = () => JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
@@ -18,10 +19,28 @@ const productsController = {
         res.render('products/show', { title: product.brand + ' ' + product.model, product });
     },
     store: (req, res) => {
+        const { brand, model, description, price, colors, stock } = req.body;
+        console.log(req.files.image); // Para depurar
+        console.log(req.files.render); // Para depurar
+
+        // Verificar si los archivos existen antes de acceder a ellos
+        const imagePath = req.files.image ? `/uploads/product_image/${req.files.image[0].filename}` : null;
+        const renderPath = req.files.render ? `/uploads/product_model/${req.files.render[0].filename}` : null;
+
+         // Obtener productos del archivo JSON
         const products = getProducts();
+        //  Crear nuevo producto
         const newProduct = {
             id: products.length + 1,
-            ...req.body
+            brand,
+            model,
+            description,
+            image: imagePath,
+            render: renderPath,
+            price,
+            colors,
+            stock,
+            filesInfo: req.files
         };
         products.push(newProduct);
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));

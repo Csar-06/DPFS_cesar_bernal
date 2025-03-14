@@ -15,7 +15,9 @@ const userController = {
     },
     storeUser: async (req, res, next) => {
         const { firstName, lastName, email, password, confirmPassword } = req.body;
-        const avatarPath = `/uploads/${req.file.filename}`; // Guardar esta ruta en el JSON
+        console.log(req.file);
+        
+        const avatarPath = `/uploads/user_avatar/${req.file.filename}`; // Guardar esta ruta en el JSON
         const date = DateTime.now().setLocale('en');
         console.log(date.toFormat('MMMM yyyy'));
 
@@ -104,6 +106,8 @@ const userController = {
     },
     showProfile: (req, res, next) => {
         const user = req.session.user
+        // const data = getUsers()
+        // const user = data[31]
         res.render('users/profile', { title: 'Profile', user })
     },
 }

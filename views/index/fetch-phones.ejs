@@ -18,12 +18,13 @@
                     <% phones.forEach(phone=> { %>
                         <li class="item">
                             <a href="/phones/id/<%= phone.id%>">
-                                <img src="<%= phone.src%><%= phone.image %>" alt="<%= phone.model %>" class="item-image">
+                                <!-- <img src="<%= phone.src%><%= phone.image%>" alt="<%= phone.model %>" class="item-image"> -->
+                                <img src="<%= phone.image%>" alt="<%= phone.model %>" class="item-image">
                                 <h2 class="item-title">
-                                    <%= phone.brand %>
-                                        <%= phone.model %>
+                                    <%= phone.Brand.brand_name %>
+                                        <%= phone.Model.model %>
                                 </h2>
-                                <p class="item-price">$<%= phone.price %>
+                                <p class="item-price">$<%= phone.unit_price %>
                                 </p>
                             </a>
                         </li>

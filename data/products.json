@@ -120,5 +120,79 @@
     "price": 500,
     "colors": "black,white, blue",
     "stock": 100
+  },
+  {
+    "id": 11,
+    "brand": "Google",
+    "model": "Pixel 8",
+    "description": "Duplica",
+    "image": "/uploads/product_image/1741724364498.png",
+    "render": "/uploads/product_model/1741724364499.glb",
+    "price": "1500",
+    "colors": "black,gray,green,pink",
+    "stock": "25",
+    "filesInfo": {
+      "image": [
+        {
+          "fieldname": "image",
+          "originalname": "google-pixel-8.png",
+          "encoding": "7bit",
+          "mimetype": "image/png",
+          "destination": "public/uploads/product_image",
+          "filename": "1741724364498.png",
+          "path": "public\\uploads\\product_image\\1741724364498.png",
+          "size": 16240
+        }
+      ],
+      "render": [
+        {
+          "fieldname": "render",
+          "originalname": "google_pixel_8.glb",
+          "encoding": "7bit",
+          "mimetype": "application/octet-stream",
+          "destination": "public/uploads/product_model",
+          "filename": "1741724364499.glb",
+          "path": "public\\uploads\\product_model\\1741724364499.glb",
+          "size": 187092
+        }
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "brand": "Google",
+    "model": "Pixel 8",
+    "description": "Duplica",
+    "image": "/uploads/product_image/1741724379804.png",
+    "render": "/uploads/product_model/1741724379805.glb",
+    "price": "1500",
+    "colors": "black,gray,green,pink",
+    "stock": "25",
+    "filesInfo": {
+      "image": [
+        {
+          "fieldname": "image",
+          "originalname": "google-pixel-8.png",
+          "encoding": "7bit",
+          "mimetype": "image/png",
+          "destination": "public/uploads/product_image",
+          "filename": "1741724379804.png",
+          "path": "public\\uploads\\product_image\\1741724379804.png",
+          "size": 16240
+        }
+      ],
+      "render": [
+        {
+          "fieldname": "render",
+          "originalname": "google_pixel_8.glb",
+          "encoding": "7bit",
+          "mimetype": "application/octet-stream",
+          "destination": "public/uploads/product_model",
+          "filename": "1741724379805.glb",
+          "path": "public\\uploads\\product_model\\1741724379805.glb",
+          "size": 187092
+        }
+      ]
+    }
   }
 ]

@@ -38,7 +38,7 @@
                     
                     <% if (product && product.image) { %>
                         <div class="image-preview">
-                            <img src="../../<%= product.src+product.image %>" alt="Imagen del producto" class="preview-img">
+                            <img src="<%= product.image %>" alt="Imagen del producto" class="preview-img">
                         </div>
                         <p>Si deseas reemplazarla, sube una nueva imagen:</p>
                     <% } %>
@@ -48,7 +48,7 @@
 
                 <div class="form-group">
                     <label for="quantity">Stock</label>
-                    <input type="text" id="quantity" name="quantity" value="<%= product ? product.stock : '' %>">
+                    <input type="text" id="stock" name="stock" value="<%= product ? product.stock : '' %>">
                 </div>
 
                 <div class="form-group">

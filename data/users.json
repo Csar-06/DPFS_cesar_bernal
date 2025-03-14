@@ -293,18 +293,18 @@
     "firstName": "Emanuel",
     "lastName": "Padilla",
     "email": "unknowcaller27@gmail.com",
-    "password": "$2b$10$vtdy3RhL/1KVApwF5mZheO79LUpB1.MB18Qx.Qzq7R6EgqihyZpP6",
+    "password": "$2b$10$48P8SSdHlmfjhTAj.S7FoefLKiFLpA5O9dsu47LY0mXj/vZ83z.A2",
     "type": "Customer",
-    "avatar": "/uploads/1741306663741.JPG",
     "joinDate": "March 2025",
+    "avatar": "/uploads/user_avatar/1741718593524.JPG",
     "avatarInfo": {
       "fieldname": "avatar",
       "originalname": "IMG_2853.JPG",
       "encoding": "7bit",
       "mimetype": "image/jpeg",
-      "destination": "public/uploads",
-      "filename": "1741306663741.JPG",
-      "path": "public\\uploads\\1741306663741.JPG",
+      "destination": "public/uploads/user_avatar",
+      "filename": "1741718593524.JPG",
+      "path": "public\\uploads\\user_avatar\\1741718593524.JPG",
       "size": 10034
     }
   },
@@ -313,18 +313,18 @@
     "firstName": "Jorge",
     "lastName": "Sanchez",
     "email": "jorgesanchez@gmail.com",
-    "password": "$2b$10$MiEf4GNzE.gtcsPdCgi7YeNZTZrw6K.txvjJ2h.xwHZ5St0CdtyyS",
+    "password": "$2b$10$PMAogcZBtZk0Ts3ItDqSb.GuoEN6L5rNhB8ng2X/ow3ypCfPkagmO",
     "type": "Customer",
     "joinDate": "March 2025",
-    "avatar": "/uploads/1741395464576.PNG",
+    "avatar": "/uploads/user_avatar/1741721363511.PNG",
     "avatarInfo": {
       "fieldname": "avatar",
       "originalname": "IMG_0398.PNG",
       "encoding": "7bit",
       "mimetype": "image/png",
-      "destination": "public/uploads",
-      "filename": "1741395464576.PNG",
-      "path": "public\\uploads\\1741395464576.PNG",
+      "destination": "public/uploads/user_avatar",
+      "filename": "1741721363511.PNG",
+      "path": "public\\uploads\\user_avatar\\1741721363511.PNG",
       "size": 276424
     }
   }

@@ -15,7 +15,7 @@
                 <%= title%>
             </h1>
 
-            <form action="/products/" method="POST" class="form">
+            <form action="/products/" method="POST" class="form" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="brand">Brand</label>
                     <input type="text" id="brand" name="brand" required>
@@ -38,12 +38,12 @@
                 
                 <div class="form-group">
                     <label for="render">Render URL</label>
-                    <input type="text" id="render" name="render">
+                    <input type="file" id="render" name="render" accept=".glb">
                 </div>
 
                 <div class="form-group">
                     <label for="quantity">Stock</label>
-                    <input type="text" id="quantity" name="quantity">
+                    <input type="text" id="stock" name="stock">
                 </div>
 
                 <div class="form-group">
