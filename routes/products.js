@@ -3,6 +3,9 @@ const router = express.Router();
 const upload = require("../middlewares/multer/multer-product-config");
 const productsController = require('../controllers/products-controller')
 const { isAdmin } = require('../middlewares/auth-middleware');
+const validateProduct = require('../middlewares/express-validations/validate-product')
+
+
 
 // 1. Listado de productos
 // router.get('/', isAdmin, productsController.index);
@@ -17,20 +20,29 @@ router.get('/create', productsController.create);
 router.get('/p/:id', productsController.show);
 
 // 4. Acción de creación
-router.post('/', upload.fields([
+router.post('/',
+  validateProduct.validateFields, // Validar los campos del formulario
+  validateProduct.handleValidationErrors, // Manejar errores de validación
+   upload.fields([
     { name: "image", maxCount: 1 },   // Solo una imagen
     { name: "render", maxCount: 1 }, // Solo un modelo 3D .glb
-  ]), productsController.store);
+  ]), 
+  productsController.store);
 
 // 5. Formulario de edición de productos
 // router.get('/:id/edit', isAdmin, productsController.edit);
 router.get('/:id/edit', productsController.edit);
 
 // 6. Acción de edición
-router.put('/p/:id', upload.fields([
-  { name: "image", maxCount: 1 },   // Solo una imagen
-  { name: "render", maxCount: 1 }, // Solo un modelo 3D .glb
-]), productsController.update);
+router.put('/p/:id',
+  validateProduct.validateId, //Validar ID de la URL
+  validateProduct.validateFields, // Validar los campos del formulario
+  validateProduct.handleValidationErrors, //Manejar errores de validación
+  upload.fields([
+    { name: "image", maxCount: 1 },   // Solo una imagen
+    { name: "render", maxCount: 1 }, // Solo un modelo 3D .glb
+  ]),
+  productsController.update);
 
 router.get('/search', productsController.fetch);
 

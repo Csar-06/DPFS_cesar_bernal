@@ -1,5 +1,5 @@
 const db = require('../database/models');
-const { Op, where } = require("sequelize");
+const { Op } = require("sequelize");
 
 
 const productsController = {
@@ -114,8 +114,8 @@ const productsController = {
 
     },
     store: async (req, res) => {
-
         try {
+
             const { brand, model, description, price, colors, stock } = req.body;
             console.log(req.files.image); // Para depurar
             console.log(req.files.render); // Para depurar
@@ -143,7 +143,7 @@ const productsController = {
                 brand_id: brand_name.id,
                 model_id: model_name.id,
                 description,
-                unit_price: price,
+                unit_price: parseFloat(price),
                 image: imagePath,
                 render: renderPath
             });
@@ -158,7 +158,7 @@ const productsController = {
             const productColor = await db.ProductColor.create({
                 product_id: product.id,
                 color_id: color.id,
-                stock
+                stock: parseInt(stock)
             });
 
             console.log({// Debuggin
