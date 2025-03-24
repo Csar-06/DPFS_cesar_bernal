@@ -6,6 +6,7 @@
 
     <head>
         <link rel="stylesheet" href="../../stylesheets/products/edit-styles.css">
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     </head>
 
     <body>
@@ -15,7 +16,7 @@
                 <%= title%>
             </h1>
 
-            <form action="/products/<%= product.id%>?_method=PUT" method="POST" class="form">
+            <form action="/products/p/<%= product.id%>?_method=PUT" method="POST" class="form" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="brand">Brand</label>
                     <input type="text" id="brand" name="brand" value="<%= product ? product.brand : '' %>" required>
@@ -47,6 +48,21 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="image">Render del Producto</label>
+                    
+                    <% if (product && product.render) { %>
+                        <div class="image-preview">
+                            <model-viewer src="<%= product.render %>" alt="3D Model" camera-controls
+                                style="height: 125px; width: 100px;">
+                            </model-viewer>
+                        </div>
+                        <p>Si deseas reemplazarla, sube un nuevo render:</p>
+                    <% } %>
+        
+                    <input type="file" id="render" name="render" accept=".glb">
+                </div>
+
+                <div class="form-group">
                     <label for="quantity">Stock</label>
                     <input type="text" id="stock" name="stock" value="<%= product ? product.stock : '' %>">
                 </div>
@@ -57,25 +73,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="colors">Colors</label>
-                    <ul id="colorList">
-                        <% if (product && product.colors) { %>
-                            <% let colors = product.colors.split(",")
-                            colors.forEach(color=> { %>
-                                <li>
-                                    <%= color %>
-                                </li>
-                                <% }) %>
-                                <% } %>
-                            </ul>
+                    <label for="colors">Color</label>
+                    
                             <div class="color-input">
-                                <input type="text" id="colors" name="colors" placeholder="Añadir color">
+                                <input type="text" id="colors" name="colors" placeholder="Añadir color" value="<%= product.color%>">
                                 <!-- <button type="button" id="addColor">Añadir</button> -->
                             </div>
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" onclick="return confirm(' ¿Desea guardar cambios?')"> 
+                    <button type="submit" onclick="return confirm('¿Desea guardar cambios?')"> 
                         <%= product ? 'Actualizar Producto' : 'Crear Producto' %>
                     </button>
                 </div>

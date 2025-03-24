@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('../partials/header') %>
+
+  <head>
+    <link rel='stylesheet' href='/stylesheets/users/edit-profile-styles.css' />
+  </head>
+
+  <body>
+    <%- include('../partials/navbar') %>
+
+      <div class="edit-container">
+
+        <h1 class="edit-title">Update your profile</h1>
+
+        <form action="/users/u/profile?_method=PUT" method="POST" class="edit-form">
+
+              <label for="firstName" class="form-label" id="nameLabel">First Name</label>
+              <input type="text" id="firstName" name="firstName" class="form-input" value='<%= user.firstName%> ' required />
+
+              <label for="lastName" class="form-label" id="lNameLabel">Last Name</label>
+              <input type="text" id="lastName" name="lastName" class="form-input" value='<%= user.lastName%>' required />
+
+              <button type="submit" class="edit-button">Upload</button>
+
+        </form>
+      </div>
+
+      <script src="/javascripts/labelEvent.js"></script>
+      <!-- <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const labels = Array.from(document.querySelectorAll(".form-label"));
+          const inputs = Array.from(document.querySelectorAll(".form-input"));
+          
+          const matchedPairs = labels.map((label, index) => {
+            return inputs[index] ? { label, input: inputs[index] } : null;
+          }).filter(pair => pair !== null);
+          
+          console.log(matchedPairs);
+        });
+      </script> -->
+  </body>
+
+</html>

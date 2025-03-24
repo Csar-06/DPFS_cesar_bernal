@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <%- include('../partials/header')%>
@@ -24,13 +24,13 @@
                 <form action="/products/search" method="get" class="form">
                     <div class="search-bar">
                         <input type="text" name="fetch" id="fetch" placeholder="Search..." value="<%= query || '' %>">
-                            <button type="submit" class="fetch-btn">
-                                <ion-icon name="search"></ion-icon>
-                            </button>
+                        <button type="submit" class="fetch-btn">
+                            <ion-icon name="search"></ion-icon>
+                        </button>
                     </div>
                 </form>
             </div>
-            
+
             <div class="container">
 
                 <a href="/products/create">
@@ -55,7 +55,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% for(let item of products) { %>
+                        <% if(products.length > 0){
+
+                            for(let item of products) { %>
 
                             <tr>
                                 <td>
@@ -70,7 +72,7 @@
                                     <%= item.model %>
                                 </td>
                                 <td>
-                                    <%= item.description.substring(0, 50) + '...' %>
+                                    <%= item.description %>
                                 </td>
                                 <td>
                                     <img src="<%= item.image %>" alt="<%= item.brand%> <%= item.model%>">
@@ -99,7 +101,9 @@
                                     </form>
                                 </td>
                             </tr>
-                            <% } %>
+                            <% } } else { %>
+                                <h2>No se encontraron productos.</h2>
+                                <% } %>
                     </tbody>
                 </table>
             </div>

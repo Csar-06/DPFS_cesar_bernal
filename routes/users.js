@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const upload = require("../middlewares/multer/multer-user-config");
 const { isLoged } = require('../middlewares/auth-middleware')
 const userController = require('../controllers/users-controller')
@@ -18,5 +18,9 @@ router.get('/logout', userController.logout);
 // 6. Mostrar perfil de usuario
 router.get('/profile', isLoged, userController.showProfile)
 // router.get('/profile', userController.showProfile)
+
+router.get('/profile/edit', isLoged, userController.editProfile)
+
+router.put('/u/profile', userController.updateProfile)
 
 module.exports = router;

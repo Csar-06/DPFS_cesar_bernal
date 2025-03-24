@@ -19,10 +19,14 @@
           <div class="product-container">
             <!-- Modelo 3D -->
             <div class="model-viewer">
-              <model-viewer src="<%= item.render %>" alt="3D Model" auto-rotate camera-controls style="height: 400px;">
-              </model-viewer>
-              <img id="fallback-image" src="<%= item.image %>" alt="Product Image"
-                style="height: 400px; display: none;">
+              <% if (item.render) { %>
+                <model-viewer src="<%= item.render %>" alt="3D Model" auto-rotate camera-controls
+                    style="height: 400px;">
+                </model-viewer>
+            <% } else { %>
+                    <img id="fallback-image" src="<%= item.image %>" alt="Product Image"
+                        style="height: 400px;">
+            <% } %>
             </div>
 
 

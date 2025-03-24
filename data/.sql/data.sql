@@ -5,8 +5,8 @@ INSERT INTO ROLES (role_name) VALUES ('admin'), ('customer');
 
 -- Insertando Usuarios
 INSERT INTO USERS (first_name, last_name, email, password, join_date, avatar) VALUES
-('Carlos', 'Perez', 'carlos@example.com', 'hashed_password', NOW(), 'avatar1.png'),
-('Ana', 'Gomez', 'ana@example.com', 'hashed_password', NOW(), 'avatar2.png');
+('Carlos', 'Perez', 'carlos@example.com', '$2a$10$w1zv2XYQQ8yzTU.Jb0SCeup5R5cvak83nvTRsHmcq.3G0bfpIAyMO', NOW(), ''), -- password: root
+('Ana', 'Gomez', 'ana@example.com', 'hashed_password', NOW(), '');
 
 -- Asignando Roles a Usuarios
 INSERT INTO USER_ROLES (user_id, role_id, created_at) VALUES

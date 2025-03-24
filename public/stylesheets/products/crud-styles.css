@@ -1,12 +1,43 @@
 h1{
-    margin: 1rem 2%;
+    padding-top:5rem ;
     font-size: xxx-large;
 }
 
 td img{
     width: 100%;
     }
+p {
+    padding: 25px; 
+    border-radius: 12px 
+}
 /* Estilos base (Mobile First) */
+.form-container{
+    margin: 1rem auto;
+}
+.search-bar{
+    display: flex;
+    align-items: center;
+}
+#fetch{
+    margin: 0 18%;
+    padding: 1rem 50% 1rem 1rem;
+    border: 2px solid slategrey;
+    border-radius: 25px;
+    transition: eborder 0.0s ease-in-out ;
+}#fetch:focus{
+    border-color: #1e293b;
+}
+.fetch-btn{
+    position: relative;
+    right: 25%;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: none;
+    border-radius: 50px;
+    font-size: large;
+}
+
 .create-btn{
     width: 18%;
     position: relative;
@@ -125,6 +156,9 @@ td img{
     h1{
         margin: 1rem 2%;
     }
+    .fetch-btn{
+        right: 24%;
+    }
     .create-btn{
         width: 12%;  
         left: 88%; 
@@ -148,6 +182,10 @@ td img{
     h1{
         margin: 1rem 8%;
     }
+    .fetch-btn{
+        right: 22%;
+    }
+    .create
     .create-btn{
         width: 10%;  
         left: 90%; 

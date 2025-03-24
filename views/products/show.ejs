@@ -19,11 +19,14 @@
                     <div class="product-container">
                         <!-- Modelo 3D -->
                         <div class="model-viewer">
-                            <model-viewer src="<%= product.render %>" alt="3D Model" auto-rotate camera-controls
-                                style="height: 400px;">
-                            </model-viewer>
-                            <img id="fallback-image" src="<%= product.image %>" alt="Product Image"
-                                style="height: 400px; display: none;">
+                            <% if (product.render) { %>
+                                <model-viewer src="<%= product.render %>" alt="3D Model" auto-rotate camera-controls
+                                    style="height: 400px;">
+                                </model-viewer>
+                            <% } else { %>
+                                    <img id="fallback-image" src="<%= product.image %>" alt="Product Image"
+                                        style="height: 400px;">
+                            <% } %>
                         </div>
 
 
@@ -40,12 +43,9 @@
 
                             <!-- Colores disponibles -->
                             <div class="colors">
-                                <% let colors = product.colors.split(",")
-                                colors.forEach(color=> { %>
-                                    <div class="color-circle">
-                                        <div class="color-area" style="background: <%= color %>"></div>
-                                    </div>
-                                    <% }) %>
+                                <div class="color-circle">
+                                    <div class="color-area" style="background: <%= product.color %>"></div>
+                                </div>
                             </div>
 
                             <!-- Control de cantidad -->
@@ -65,18 +65,18 @@
                     <div class="controls">
                         <a href="/products" class="border-btn">Volver al listado</a>
                         <a href="/products/<%= product.id %>/edit" class="btn-mod">Editar</a>
-            
+
                         <form action="/products/<%= product.id %>?_method=DELETE" method="POST" style="display:inline;">
-                            <button type="submit"
-                                onclick="return confirm('¿Estás seguro de eliminar este producto?')" class="btn-del">Eliminar</button>
+                            <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este producto?')"
+                                class="btn-del">Eliminar</button>
                         </form>
-        
+
                     </div>
                 </main>
             </div>
 
 
-           
+
             <%- include('../partials/footer') %>
 
     </body>

@@ -34,7 +34,7 @@ Tengo 21 años y soy aficionado a los videojuegos, mis géneros favoritos son lo
 >   ## Entregables
 > - [Wireframes del proyecto](https://drive.google.com/file/d/11MuSwKKPkZWU8ZUxOYGKkJo0Y-DNhkDj/view?usp=sharing)
 > - [Tablero de trabajo](https://trello.com/b/6lgv3MVU)
-> - [Diagrama ER](https://drive.google.com/file/d/1nHobdNAS5iDj5PGov3kECufhdFSUqJXm/view?usp=sharing)
+> - [Diagrama ER](https://drive.google.com/file/d/1aaPP1lWYzfh2Lcw1_oGIBdxjdQADhRfb/view?usp=sharing)
 
 <!-- >[!WARNING]
 > El proyecto se encuentra notoriamente incompleto para la fecha de entrega estipulada...sin embargo, si desea ver los avances realizados tome en cuenta los siguientes puntos:

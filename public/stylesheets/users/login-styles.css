@@ -50,7 +50,7 @@
 }
 
 .login-input:focus {
-    border-color: #1e293b;
+    border-color: #1e293b;  
 }
 
 /* Enlace para recuperar contraseña */
