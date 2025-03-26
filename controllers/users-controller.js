@@ -54,7 +54,7 @@ const userController = {
         console.log(user.id);
 
         // Confirmación que el rol a asignar exista
-        const role = await db.Role.findOne({ where: { role_name: 'admin' } })
+        const role = await db.Role.findOne({ where: { role_name: 'customer' } })
         if (!role) {
             throw new Error('Error al asignar rol al usuario');
         };

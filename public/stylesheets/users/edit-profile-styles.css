@@ -34,6 +34,15 @@
     border-radius: 5px;
     margin-bottom: 10px;
 }
+.err{
+    width: 96%;
+    background-color: #ffe5e5;
+    color: red;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: none;
+}
 
 /* Etiquetas */
 .form-label {

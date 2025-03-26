@@ -12,9 +12,10 @@ router.get('/login', userController.index);
 router.get('/signup', userController.createUser);
 // 3. Almacenamiento de Usuario
 router.post('/signup',
+    upload.single("avatar"),
     validateUser.validateRegisterFields, // Valida los campos de registro.
     validateUser.handleValidationErrors, // Control de errores.
-    upload.single("avatar"), userController.storeUser)
+    userController.storeUser)
 // 4. Acción de Logeo al sitio
 router.post('/login',
     validateUser.validateLoginFields, // Valida los campos de Logueo

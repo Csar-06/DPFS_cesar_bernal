@@ -14,7 +14,7 @@
 
         <h1 class="register-title">Create Your Nexxus Account</h1>
 
-        <form class="register-form" action="/users/signup" method="POST" enctype="multipart/form-data">
+        <form class="register-form" id="register-form" action="/users/signup" method="POST" enctype="multipart/form-data">
           
           <% if (error) { %>
             <p class="error">
@@ -23,19 +23,25 @@
             <% } %>
 
               <label for="firstName" class="register-label" id="nameLabel">First Name</label>
-              <input type="text" id="firstName" name="firstName" class="register-input" required />
+              <input type="text" id="firstName" name="firstName" class="register-input"  />
+              <span class="err"></span>
+
 
               <label for="lastName" class="register-label" id="lNameLabel">Last Name</label>
-              <input type="text" id="lastName" name="lastName" class="register-input" required />
+              <input type="text" id="lastName" name="lastName" class="register-input"  />
+              <span class="err"></span>
 
               <label for="email" class="register-label" id="emailLabel">Email</label>
-              <input type="email" id="email" name="email" class="register-input" required />
+              <input type="email" id="email" name="email" class="register-input"  />
+              <span class="err"></span>
 
               <label for="password" class="register-label" id="passwordLabel">Password</label>
-              <input type="password" id="password" name="password" class="register-input" required />
+              <input type="password" id="password" name="password" class="register-input"  />
+              <span class="err"></span>
 
               <label for="confirmPassword" class="register-label" id="passwordValidationLabel">Confirm Password</label>
-              <input type="password" id="confirmPassword" name="confirmPassword" class="register-input" required />
+              <input type="password" id="confirmPassword" name="confirmPassword" class="register-input"  />
+              <span class="err"></span>
 
               <label for="avatar" id="pictureLabel">Profile Picture</label>
               <input type="file" id="avatar" name="avatar" class="register-input" accept="image/*" />
@@ -50,18 +56,7 @@
       </div>
 
       <script src="/javascripts/labelEvent.js"></script>
-      <!-- <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          const labels = Array.from(document.querySelectorAll(".register-label"));
-          const inputs = Array.from(document.querySelectorAll(".register-input"));
-          
-          const matchedPairs = labels.map((label, index) => {
-            return inputs[index] ? { label, input: inputs[index] } : null;
-          }).filter(pair => pair !== null);
-          
-          console.log(matchedPairs);
-        });
-      </script> -->
+      <script src="../../javascripts/form-validations/validate-registerForm.js"></script>
   </body>
 
 </html>
