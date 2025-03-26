@@ -10,80 +10,90 @@
 
     <body>
 
-        <div class="container">
-            <h1 class="title">
-                <%= title%>
-            </h1>
+        <%- include('../partials/navbar')%>
 
-            <form action="/products/" method="POST" class="form" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="brand">Brand</label>
-                    <input type="text" id="brand" name="brand" required>
-                </div>
+            <div class="container">
+                <h1 class="title">
+                    <%= title%>
+                </h1>
 
-                <div class="form-group">
-                    <label for="model">Model</label>
-                    <input type="text" id="model" name="model" required>
-                </div>
+                <form action="/products/" method="POST" class="form" id="form" enctype="multipart/form-data">
 
-                <div class="form-group">
-                    <label for="description">Descripción</label>
-                    <textarea id="description" name="description" rows="4" required></textarea>
-                </div>
+                    <% if(error){ %>
+                        <span>
+                            <%= error%>
+                        </span>
+                        <% }%>
 
-                <div class="form-group">
-                    <label for="image">Subir Imagen</label>
-                    <input type="file" id="image" name="image" accept="image/*">
-                </div>
-                
-                <div class="form-group">
-                    <label for="render">Render URL</label>
-                    <input type="file" id="render" name="render" accept=".glb">
-                </div>
+                            <div class="form-group">
 
-                <div class="form-group">
-                    <label for="quantity">Stock</label>
-                    <input type="text" id="stock" name="stock">
-                </div>
+                                <label for="brand">Brand</label>
+                                <input type="text" id="brand" name="brand">
+                                <span class="err"></span>
+                            </div>
 
-                <div class="form-group">
-                    <label for="price">Price</label>
-                    <input type="text" id="price" name="price">
-                </div>
+                            <div class="form-group">
+                                <label for="model">Model</label>
+                                <input type="text" id="model" name="model">
+                                <span class="err"></span>
+                            </div>
+                            <!-- <div class="err">
+                    <p id="err-model">Insert product model</p>
+                </div> -->
 
-                <div class="form-group">
-                    <label for="colors">Colors</label>
-                    <div class="color-input">
-                        <input type="text" id="colors" name="colors" placeholder="Añadir color">
-                        
-                    </div>
-                    <ul id="colorList">
+                            <div class="form-group">
+                                <label for="description">Descripción</label>
+                                <textarea id="description" name="description" rows="4"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="image">Subir Imagen</label>
+                                <input type="file" id="image" name="image" accept="image/*">
+                                <span class="err"></span>
+                            </div>
 
 
-                    </ul>
-                </div>
+                            <div class="form-group">
+                                <label for="render">Render URL</label>
+                                <input type="file" id="render" name="render" accept=".glb">
+                            </div>
 
-                <div class="form-actions">
-                    <button type="submit">
-                        Crear Producto
-                    </button>
-                </div>
-            </form>
-        </div>
+                            <div class="form-group">
+                                <label for="quantity">Stock</label>
+                                <input type="text" id="stock" name="stock">
+                                <span class="err"></span>
+                            </div>
+                            <!-- <div class="err">
+                    <p id="err-stock">Insert product stock</p>
+                </div> -->
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const newColorInput = document.getElementById('colors');
-                const colorList = document.getElementById('colorList');
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <input type="text" id="price" name="price">
+                                <span class="err"></span>
+                            </div>
+                            <!-- <div class="err">
+                    <p id="err-price">Insert product price</p>
+                </div> -->
 
-                if (newColorInput.value.trim() !== '') {
-                    const li = document.createElement('li');
-                    li.textContent = newColorInput.value;
-                    colorList.appendChild(li);
-                    newColorInput.value = '';
-                }
-            });
-        </script>
+                            <div class="form-group">
+                                <label for="colors">Colors</label>
+                                <input type="text" id="colors" name="colors" placeholder="Añadir color">
+                                <span class="err"></span>
+                            </div>
+                            <!-- <div class="err">
+                    <p id="err-color">Insert product color</p>
+                </div> -->
+
+                            <div class="form-actions">
+                                <button type="submit">
+                                    Crear Producto
+                                </button>
+                            </div>
+                </form>
+                <script src="../../javascripts/form-validations/validate-createProduct.js"></script>
+            </div>
+
 
     </body>
 

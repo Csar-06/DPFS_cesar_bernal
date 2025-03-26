@@ -10,27 +10,37 @@
     </head>
 
     <body>
-
+        <%- include('../partials/navbar')%>
         <div class="container">
             <h1 class="title">
                 <%= title%>
-            </h1>
+            </h1>   
 
-            <form action="/products/p/<%= product.id%>?_method=PUT" method="POST" class="form" enctype="multipart/form-data">
+            <form action="/products/p/<%= product.id%>?_method=PUT" method="POST" class="form" id="form" enctype="multipart/form-data">
+                <% if(error){ %>
+                    <span>
+                        <%= error%>
+                    </span>
+                <% }%>
+
                 <div class="form-group">
                     <label for="brand">Brand</label>
-                    <input type="text" id="brand" name="brand" value="<%= product ? product.brand : '' %>" required>
+                    <input type="text" id="brand" name="brand" value="<%= product ? product.brand : '' %>" >
+                    <span class="err"></span>
+
                 </div>
 
                 <div class="form-group">
                     <label for="model">Model</label>
-                    <input type="text" id="model" name="model" value="<%= product ? product.model : '' %>" required>
+                    <input type="text" id="model" name="model" value="<%= product ? product.model : '' %>" >
+                    <span class="err"></span>
+
                 </div>
 
                 <div class="form-group">
                     <label for="description">Descripción</label>
                     <textarea id="description" name="description" rows="4"
-                        required><%= product ? product.description : '' %></textarea>
+                        ><%= product ? product.description : '' %></textarea>
                 </div>
 
                 
@@ -45,6 +55,8 @@
                     <% } %>
         
                     <input type="file" id="image" name="image" accept="image/*">
+                    <span class="err"></span>
+
                 </div>
 
                 <div class="form-group">
@@ -65,20 +77,20 @@
                 <div class="form-group">
                     <label for="quantity">Stock</label>
                     <input type="text" id="stock" name="stock" value="<%= product ? product.stock : '' %>">
+                    <span class="err"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="text" id="price" name="price" value="<%= product ? product.price : '' %>">
+                    <input type="text" id="price" name="price" value="<%= product ? product.price : '' %>"> 
+                    <span class="err"></span>
+
                 </div>
 
                 <div class="form-group">
                     <label for="colors">Color</label>
-                    
-                            <div class="color-input">
-                                <input type="text" id="colors" name="colors" placeholder="Añadir color" value="<%= product.color%>">
-                                <!-- <button type="button" id="addColor">Añadir</button> -->
-                            </div>
+                        <input type="text" id="colors" name="colors" placeholder="Añadir color" value="<%= product.color%>">
+                        <span class="err"></span>
                 </div>
 
                 <div class="form-actions">
@@ -89,39 +101,7 @@
             </form>
         </div>
 
-        <script>
-            
-            document.addEventListener("DOMContentLoaded", function () {
-                const newColorInput = document.getElementById('colors');
-                let colorList = document.getElementById('colorList');
-                let cListData = document.querySelectorAll('#colorList li');
-                //  console.log(colorList);
-                 JSON.stringify()
-                // colorList.forEach(c=> console.log(c))    x
-                
-                if (newColorInput.value.trim() !== '') {
-                    const li = document.createElement('li');
-                    li.textContent = newColorInput.value;
-                    colorList.appendChild(li);
-                    newColorList = [...cListData, li]
-                    console.log(newColorList);
-                    
-                    colorList = newColorList.map(c=> {
-                        console.log(c.outerText.trim())
-                        return c.outerText
-                    })
-                    // colorList = JSON.stringify(json)
-                    console.log(colorList);
-                    // colorList = newColorList;
-                    // console.log(colorList);
-                    newColorInput.value = colorList;
-                    // console.log(newColorList);
-                    
-                    
-                    
-                }
-            });
-        </script>
+        <script src="../../javascripts/form-validations/validate-editProduct.js"></script>
 
 
     </body>

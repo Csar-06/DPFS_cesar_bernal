@@ -21,12 +21,12 @@ router.get('/p/:id', productsController.show);
 
 // 4. Acción de creación
 router.post('/',
-  validateProduct.validateFields, // Validar los campos del formulario
-  validateProduct.handleValidationErrors, // Manejar errores de validación
-   upload.fields([
+  upload.fields([
     { name: "image", maxCount: 1 },   // Solo una imagen
     { name: "render", maxCount: 1 }, // Solo un modelo 3D .glb
-  ]), 
+  ]),
+  validateProduct.validateCreateProductFields, // Validar los campos del formulario
+  validateProduct.handleValidationErrors, // Manejar errores de validación
   productsController.store);
 
 // 5. Formulario de edición de productos
@@ -35,13 +35,13 @@ router.get('/:id/edit', productsController.edit);
 
 // 6. Acción de edición
 router.put('/p/:id',
-  validateProduct.validateId, //Validar ID de la URL
-  validateProduct.validateFields, // Validar los campos del formulario
-  validateProduct.handleValidationErrors, //Manejar errores de validación
   upload.fields([
     { name: "image", maxCount: 1 },   // Solo una imagen
     { name: "render", maxCount: 1 }, // Solo un modelo 3D .glb
   ]),
+  validateProduct.validateId, //Validar ID de la URL
+  validateProduct.validateEditProductFields, // Validar los campos del formulario
+  validateProduct.handleValidationErrors, //Manejar errores de validación
   productsController.update);
 
 router.get('/search', productsController.fetch);

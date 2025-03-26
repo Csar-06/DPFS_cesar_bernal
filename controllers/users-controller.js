@@ -3,8 +3,6 @@ const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const { DateTime } = require('luxon');
 const db = require('../database/models');
-const { where } = require('sequelize');
-const { error } = require('console');
 
 const usersFilePath = path.join(__dirname, '../data/users.json'); //Dirección del archivo.json con la data
 const getUsers = () => JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));// Función para obtener transfromar el archivo .json a texto 

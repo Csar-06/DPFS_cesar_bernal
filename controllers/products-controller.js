@@ -55,7 +55,7 @@ const productsController = {
             .catch()
     },
     create: (req, res) => {
-        res.render('products/create', { title: 'Create Product' });
+        res.render('products/create', { title: 'Create Product', error:'' });
     },
     show: (req, res) => {
         const id = req.params.id
@@ -231,7 +231,7 @@ const productsController = {
                 };
                 console.log(product);
 
-                res.render('products/edit', { title: 'Edit Product', product });
+                res.render('products/edit', { title: 'Edit Product', product, error: ''});
             })
             .catch((e) => {
                 console.log(e);
