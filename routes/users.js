@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const upload = require("../middlewares/multer/multer-user-config");
 const { isLoged } = require('../middlewares/auth-middleware')
-const userController = require('../controllers/users-controller')
+const userController = require('../controllers/users.controller')
 const validateUser = require('../middlewares/express-validations/validate-user');
 
 

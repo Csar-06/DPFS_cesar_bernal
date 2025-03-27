@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 
 
 const productsController = {
+    // Mostrar lista de Productos
     index: (req, res) => {
         query = '';
         db.ProductColor.findAll({
@@ -15,7 +16,7 @@ const productsController = {
                 {
                     model: db.Product,
                     require: true,
-                    attributes: ['description', 'image', 'render', 'unit_price'],
+                    attributes: ['description', 'image', 'unit_price'],
                     include: [
                         {
                             model: db.Brand,
@@ -39,13 +40,13 @@ const productsController = {
             const products = data.map(d => {
                 return p = {
                     id: d.id,
-                    brand: d.Product.Brand.brand_name,
-                    model: d.Product.Model.model,
+                    name: `${d.Product.Brand.brand_name} ${d.Product.Model.model}`,
                     color: d.Color.color,
                     stock: d.stock,
                     description: d.Product.description,
                     image: d.Product.image,
                     price: d.Product.unit_price,
+                    detail: `/products/p/${d.id}`
                 }
 
             });
@@ -55,7 +56,7 @@ const productsController = {
             .catch()
     },
     create: (req, res) => {
-        res.render('products/create', { title: 'Create Product', error:'' });
+        res.render('products/create', { title: 'Create Product', error: '' });
     },
     show: (req, res) => {
         const id = req.params.id
@@ -231,7 +232,7 @@ const productsController = {
                 };
                 console.log(product);
 
-                res.render('products/edit', { title: 'Edit Product', product, error: ''});
+                res.render('products/edit', { title: 'Edit Product', product, error: '' });
             })
             .catch((e) => {
                 console.log(e);
@@ -403,6 +404,71 @@ const productsController = {
             return res.send(e);
         }
     },
+    getProduct: async (req, res) => {
+        try {
+            const products = await db.Product.findAll(
+                {
+                    attributes: ['id', 'description'],
+                    include: [
+                        {
+                            model: db.Brand,
+                            required: true,
+                            attributes: ['brand_name']
+                        },
+                        {
+                            model: db.Model,
+                            required: true,
+                            attributes: ['model']
+                        }
+                    ],
+                    order: [['id', 'ASC']]
+                });
+            console.log(products);
+            const productsList = products.map(product => ({
+                id: product.id,
+                name: `${product.Brand.brand_name} ${product.Model.model}`,
+                description: product.description,
+                detail: `/api/products/${product.id}`
+            }));
+            res.json({ count: products.length, products: productsList });
+        } catch (error) {
+            res.status(500).json({ error: 'Error al obtener productos' });
+        }
+    },
+    getProductDetail: async (req, res) => {
+        const id = req.params.id;
+        try {
+            const product = await db.Product.findByPk(id,
+                {
+                    include: [
+                        {
+                            model: db.Brand,
+                            required: true,
+                            attributes: ['brand_name']
+                        },
+                        {
+                            model: db.Model,
+                            required: true,
+                            attributes: ['model']
+                        },
+                        {
+                                  model: db.ProductColor,
+                                  required: true,
+                                  attributes: ['id'],
+                                  include: [{
+                                    model: db.Color,
+                                    required: true,
+                                    attributes: ['color'] //col nombre del color
+                                  }]
+                                },
+                ]}
+            );
+            if (!product) return res.status(404).json({ error: 'Producto no encontrado' });
+            res.json(product);
+        } catch (error) {
+            res.status(500).json({ error: 'Error al obtener producto' });
+        }
+    }
 
 };
 

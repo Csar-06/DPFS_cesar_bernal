@@ -42,13 +42,13 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Brand</th>
-                            <th>Model</th>
+                            <th>Name</th>
                             <th>Description</th>
                             <th>Image</th>
                             <th>Colors</th>
-                            <th>Stock</th>
                             <th>Price</th>
+                            <th>Stock</th>
+                            <th>Detail</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -57,15 +57,12 @@
 
                             <tr>
                                 <td>
-                                    <a href="/products/p/<%= item.id%>">
-                                        <%= item.id %>
-                                    </a>
+                                    <%= item.id %>
                                 </td>
                                 <td>
-                                    <%= item.brand %>
-                                </td>
-                                <td>
-                                    <%= item.model %>
+                                   <p>
+                                    <%= item.name %>
+                                   </p> 
                                 </td>
                                 <td>
                                     <%= item.description.substring(0, 50) + '...' %>
@@ -76,11 +73,17 @@
                                 <td class="colors">
                                     <p style="background-color: <%=item.color%> "></p>
                                 </td>
+                                <td >
+                                    <%= item.price %>
+                                    
+                                </td>
                                 <td>
                                     <%= item.stock %>
                                 </td>
                                 <td>
-                                    <%= item.price %>
+                                    <a href="<%= item.detail%>">
+                                        <%= item.detail %>
+                                    </a>
                                 </td>
                                 <td class="actions">
                                     <a href="/products/<%= item.id%>/edit">

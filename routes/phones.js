@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 
-let phonesControllers = require('../controllers/phones-controllers.js')
+let phonesControllers = require('../controllers/phones.controller.js')
 
 /* Lista de Telefonos */
 router.get('/', phonesControllers.index);

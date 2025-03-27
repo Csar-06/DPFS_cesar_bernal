@@ -8,6 +8,7 @@ const usersFilePath = path.join(__dirname, '../data/users.json'); //Dirección d
 const getUsers = () => JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));// Función para obtener transfromar el archivo .json a texto 
 
 const userController = {
+    // >>>> Sección de Logueo y registro de usuarios <<<<
     index: (req, res, next) => {
         res.render('users/login', { title: 'Login', error: "" });
     },
@@ -164,34 +165,64 @@ const userController = {
             let user = req.session.user;
             const id = user.id;
 
-                await db.User.update(
-                    {
-                        first_name: firstName,
-                        last_name: lastName,        
-                    },
-                    { where: { id: id } }
-                );
+            await db.User.update(
+                {
+                    first_name: firstName,
+                    last_name: lastName,
+                },
+                { where: { id: id } }
+            );
 
 
-               user = await db.User.findOne(
+            user = await db.User.findOne(
 
-                    { where: { id: id } }
-                )
+                { where: { id: id } }
+            )
 
-                req.session.user = {
-                    id: user.id,
-                    firstName: user.first_name,
-                    lastName: user.last_name,
-                    email: user.email,
-                    avatar: user.avatar,
-                    joinDate: user.join_date
-                }
+            req.session.user = {
+                id: user.id,
+                firstName: user.first_name,
+                lastName: user.last_name,
+                email: user.email,
+                avatar: user.avatar,
+                joinDate: user.join_date
+            }
 
             return res.redirect('/users/profile')
 
         } catch (e) {
             console.log(e);
             return res.send(e)
+        }
+    },
+
+    // >>>> Sección de Admin Dashboard <<<<
+
+    // Obtener lista de usuarios
+    getUsers: async (req, res) => {
+        try {
+            const users = await db.User.findAll({ attributes: ['id', 'first_name', 'last_name', 'email'] });
+            const usersList = users.map(user => ({
+                id: user.id,
+                name: `${user.first_name} ${user.last_name}`,
+                email: user.email,
+                detail: `/api/users/${user.id}`
+            }));
+            res.json({ count: users.length, users: usersList });
+        } catch (error) {
+            res.status(500).json({ error: 'Error al obtener usuarios' });
+        }
+    },
+
+    // Obtener detalle de usuario
+    getUserDetails: async (req, res) => {
+        const id = req.params.id;
+        try {
+            const user = await db.User.findByPk(id, { attributes: { exclude: ['password'] } });
+            if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+            res.json(user);
+        } catch (error) {
+            res.status(500).json({ error: 'Error al obtener usuario' });
         }
     }
 }
