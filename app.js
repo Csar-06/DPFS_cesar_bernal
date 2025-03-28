@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session');
-
+const cors = require("cors");
 
 
 const indexRouter = require('./routes/index');
@@ -39,6 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'))
 console.log(path.join(__dirname,'public'));
+app.use(cors({ origin: "http://localhost:5173" })); // Permite todas las solicitudes desde el origen especificado
 
 
 app.use('/', indexRouter);

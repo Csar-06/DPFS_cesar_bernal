@@ -1,7 +1,10 @@
+const { trace } = require("../../../routes/products");
+
 document.getElementById("login-form").addEventListener("submit", function (event) {
     event.preventDefault();
 
     let isValid = true;
+    const form = event.target;
     const errorMessages = document.querySelectorAll(".err");
     errorMessages.forEach(msg => msg.textContent = ""); // Limpiar mensajes previos
 
@@ -33,7 +36,7 @@ document.getElementById("login-form").addEventListener("submit", function (event
     }
 
     if (isValid) {
-        this.submit(); // Enviar formulario si todo está correcto
+        form.submit(); // Enviar formulario si todo está correcto
     }
 });
 

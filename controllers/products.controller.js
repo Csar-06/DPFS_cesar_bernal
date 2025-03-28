@@ -423,7 +423,7 @@ const productsController = {
                     ],
                     order: [['id', 'ASC']]
                 });
-            console.log(products);
+            // console.log(products);
             const productsList = products.map(product => ({
                 id: product.id,
                 name: `${product.Brand.brand_name} ${product.Model.model}`,
@@ -454,7 +454,7 @@ const productsController = {
                         {
                                   model: db.ProductColor,
                                   required: true,
-                                  attributes: ['id'],
+                                  attributes: ['id', 'stock'],
                                   include: [{
                                     model: db.Color,
                                     required: true,
@@ -463,8 +463,28 @@ const productsController = {
                                 },
                 ]}
             );
+
+            const colors = product.ProductColors.map(pc => pc.Color.color);
+            console.log(colors);
+            const stock = product.ProductColors.map((pc) => pc.stock)
+            const  totalStock= stock.reduce((acum, curr) => acum + curr)
+            console.log(totalStock);
+            
+            const data = {
+                id: product.id,
+                brand: product.Brand.brand_name,
+                model: product.Model.model,
+                description: product.description,
+                image: product.image,
+                render: product.render,
+                price: product.unit_price,
+                stock: totalStock,
+                colors: colors
+                
+            }
             if (!product) return res.status(404).json({ error: 'Producto no encontrado' });
-            res.json(product);
+            
+            res.json(data);
         } catch (error) {
             res.status(500).json({ error: 'Error al obtener producto' });
         }

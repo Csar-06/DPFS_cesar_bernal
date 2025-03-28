@@ -8,16 +8,16 @@ const validateProduct = require('../middlewares/express-validations/validate-pro
 
 
 // 1. Listado de productos
-// router.get('/', isAdmin, productsController.index);
-router.get('/', productsController.index);
+router.get('/', isAdmin, productsController.index);
+// router.get('/', productsController.index);
 
 // 2. Formulario de creación de productos
-// router.get('/create', isAdmin, productsController.create);
-router.get('/create', productsController.create);
+router.get('/create', isAdmin, productsController.create);
+// router.get('/create', productsController.create);
 
 // 3. Detalle de un producto particular
-// router.get('/:id', isAdmin, productsController.show);
-router.get('/p/:id', productsController.show);
+router.get('/:id', isAdmin, productsController.show);
+// router.get('/p/:id', productsController.show);
 
 // 4. Acción de creación
 router.post('/',
@@ -30,8 +30,8 @@ router.post('/',
   productsController.store);
 
 // 5. Formulario de edición de productos
-// router.get('/:id/edit', isAdmin, productsController.edit);
-router.get('/:id/edit', productsController.edit);
+router.get('/:id/edit', isAdmin, productsController.edit);
+// router.get('/:id/edit', productsController.edit);
 
 // 6. Acción de edición
 router.put('/p/:id',

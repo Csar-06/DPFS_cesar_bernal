@@ -3,6 +3,7 @@ const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const { DateTime } = require('luxon');
 const db = require('../database/models');
+const { type } = require('os');
 
 const usersFilePath = path.join(__dirname, '../data/users.json'); //Dirección del archivo.json con la data
 const getUsers = () => JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));// Función para obtener transfromar el archivo .json a texto 
@@ -97,14 +98,7 @@ const userController = {
             }
 
             // Guardar datos del usuario en sesión
-            req.session.user = {
-                id: user.id,
-                firstName: user.first_name,
-                lastName: user.last_name,
-                email: user.email,
-                avatar: user.avatar,
-                joinDate: user.join_date
-            };
+            
 
             const role = await db.UserRole.findOne(
                 {
@@ -123,8 +117,21 @@ const userController = {
                     where: { user_id: user.id }
                 });
 
+                req.session.user = {
+                    id: user.id,
+                    firstName: user.first_name,
+                    lastName: user.last_name,
+                    email: user.email,
+                    avatar: user.avatar,
+                    joinDate: user.join_date,
+                    type:role.role_id
+                };
+                console.log(user.id == role.user_id);
+                console.log(role.role_id == 1);
+                
+
             // Redirigir según el tipo de usuario
-            if (user.id === role.user_id && role.Role.id === 1) {
+            if (user.id === role.user_id && role.role_id == 1) {
                 return res.redirect('/products'); // Ruta específica para admins
             } else {
                 return res.redirect('/'); // Ruta normal para clientes
@@ -201,12 +208,14 @@ const userController = {
     // Obtener lista de usuarios
     getUsers: async (req, res) => {
         try {
-            const users = await db.User.findAll({ attributes: ['id', 'first_name', 'last_name', 'email'] });
+            const users = await db.User.findAll({ attributes: ['id', 'first_name', 'last_name', 'email', 'avatar', 'join_date'] });
             const usersList = users.map(user => ({
                 id: user.id,
                 name: `${user.first_name} ${user.last_name}`,
                 email: user.email,
-                detail: `/api/users/${user.id}`
+                avatar: user.avatar,
+                detail: `/api/users/${user.id}`,
+                joinDate: user.join_date
             }));
             res.json({ count: users.length, users: usersList });
         } catch (error) {
