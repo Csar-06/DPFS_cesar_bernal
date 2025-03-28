@@ -3,11 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const slides = document.querySelectorAll(".carousel-slide");
     const prevButton = document.querySelector(".carousel-prev");
     const nextButton = document.querySelector(".carousel-next");
-    
+
     let currentIndex = 0;
-    const totalSlides = slides.length;
     const autoSlideInterval = 3000; // 3 segundos
     let autoSlide;
+    slides[1].style.display = 'none'
 
     // Actualiza la posicion de los banners del carrusel
     function updateSlidePosition() {
@@ -15,20 +15,40 @@ document.addEventListener("DOMContentLoaded", function () {
         const multiplier = isWideScreen ? 50 : 100;
         const offset = -currentIndex * multiplier;
         carousel.style.transform = `translateX(${offset}%)`;
+
     }
-    
+
     //Actualizar la posición si el usuario cambia el tamaño de la pantalla
     window.addEventListener("resize", updateSlidePosition);
-    
+
 
     function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateSlidePosition();
+        currentIndex += 1;
+
+        if (currentIndex >= slides.length) {
+            currentIndex = 0
+            slides[currentIndex].style.display = 'flex'
+            slides[currentIndex + 1].style.display = 'none'
+        } else {
+            slides[currentIndex].style.display = 'flex'
+            slides[currentIndex - 1].style.display = 'none'
+        }
+
     }
 
     function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateSlidePosition();
+        currentIndex -= 1;
+
+        if (currentIndex < 0) {
+            currentIndex = slides.length -1
+            slides[currentIndex].style.display = 'flex'
+            slides[currentIndex - 1].style.display = 'none'
+        } else {
+            slides[currentIndex].style.display = 'flex'
+            slides[currentIndex + 1].style.display = 'none'
+        }
+
+
     }
 
     function startAutoSlide() {

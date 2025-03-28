@@ -25,3 +25,8 @@ export const fetchProducts = async () => {
   }
 };
 
+export const api = axios.create({
+  baseURL: "http://localhost:3000/api",
+  withCredentials: true, // Habilita las cookies en las peticiones
+});
+

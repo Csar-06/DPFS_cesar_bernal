@@ -73,75 +73,55 @@ const userController = {
     login: async (req, res) => {
         try {
             const { email, password } = req.body;
-            // const users = getUsers(); // Obtener usuarios desde el archivo JSON o BD
-            // const user = users.find(u => u.email === email);
+            const user = await db.User.findOne({ where: { email } });
 
-            const user = await db.User.findOne({ where: { email: email } })
             if (!user) {
                 return res.render('users/login', {
                     title: 'Login',
-                    error: "Incorrect email or password. Please try again.",
+                    error: "Incorrect email or password.",
                     email
                 });
             }
-            console.log(user);
 
-            // Comparar la contraseña ingresada con la encriptada
             const isMatch = await bcrypt.compare(password, user.password);
-
             if (!isMatch) {
                 return res.render('users/login', {
                     title: 'Login',
-                    error: "Incorrect email or password. Please try again.",
+                    error: "Incorrect email or password.",
                     email
                 });
             }
 
-            // Guardar datos del usuario en sesión
-            
+            // Obtener el rol del usuario
+            const role = await db.UserRole.findOne({
+                include: [{ model: db.Role }],
+                where: { user_id: user.id }
+            });
 
-            const role = await db.UserRole.findOne(
-                {
-                    include: [
-                        {
-                            model: db.User,
-                            required: true,
-                            attributes: ['id']
-                        },
-                        {
-                            model: db.Role,
-                            required: true,
+            // Guardar datos en la sesión
+            req.session.user = {
+                id: user.id,
+                firstName: user.first_name,
+                lastName: user.last_name,
+                email: user.email,
+                avatar: user.avatar,
+                joinDate: user.join_date,
+                type: role?.Role?.role_name || "customer" // Si no tiene rol, se asume "customer"
+            };
 
-                        }
-                    ],
-                    where: { user_id: user.id }
-                });
-
-                req.session.user = {
-                    id: user.id,
-                    firstName: user.first_name,
-                    lastName: user.last_name,
-                    email: user.email,
-                    avatar: user.avatar,
-                    joinDate: user.join_date,
-                    type:role.role_id
-                };
-                console.log(user.id == role.user_id);
-                console.log(role.role_id == 1);
-                
+            // Configurar la duración de la sesión según el rol
+            req.session.cookie.maxAge = role?.Role?.role_name === "admin"
+                ? 60 * 60 * 1000  // Admin: 1 hora
+                : 48 * 60 * 60 * 1000;  // Cliente: 48 horas
 
             // Redirigir según el tipo de usuario
-            if (user.id === role.user_id && role.role_id == 1) {
-                return res.redirect('/products'); // Ruta específica para admins
-            } else {
-                return res.redirect('/'); // Ruta normal para clientes
-            }
+            return res.redirect(role?.Role?.role_name === "admin" ? 'http://localhost:5173/' : '/');
 
         } catch (error) {
             console.error("Login error:", error);
             return res.status(500).render('users/login', {
                 title: 'Login',
-                error: "An error occurred. Please try again later.",
+                error: "An error occurred. Please try again.",
                 email: req.body.email
             });
         }

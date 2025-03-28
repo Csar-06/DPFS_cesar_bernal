@@ -18,6 +18,27 @@ Nuestra oferta se ajustará a ese público mediante la venta de celulares reacon
 Tengo 21 años y soy aficionado a los videojuegos, mis géneros favoritos son los RPG, Fighting Games y shooters. Fuertemente atraído al arte popular, la animación y la música. En el ámbito de desarrollo, me llama más la atención el desarrollo en el área backend, para retarme a utilizar mis capacidades, busco ser una persona pensante y razonable, trato de ser versátil y adquirir conocimientos en otras áreas de desarrollo.
 
 ---
+>[!NOTE]
+>Para iniciar los servidores, procure utilizar los siguientes comandos en las rutas *"root"* o *"raiz*, de cada servidor.
+>
+>* Para iniciar el Servidor **Express.js** utiliza:
+> 
+>```
+> $ nodemon
+>```
+> 
+>* Para iniciar el Servidor **React** utiliza:
+>```
+>$ cd Nexxus_Dashboard
+>$ npm run dev
+>```
+>
+>No olvides instalar las dependencias antes de iniciar ambos servidores
+>``` 
+>npm install
+>```
+---
+
 > [!NOTE]
 > ## SITIOS DE REFERENCIA
 > * Elegí las paginas de grandes compañias de celulares como gran fuente de inspiración, gracias a sus páginas minimalistas, diseños limpios, sencillos y modernos. Sumado a algunas tiendas en línea, como guias/ejemplos de diseño.
@@ -29,18 +50,10 @@ Tengo 21 años y soy aficionado a los videojuegos, mis géneros favoritos son lo
 > * [Ventas rapidas](https://www.ventasrapidas.net)
 > * [Amazon](https://www.amazon.com/ref=nav_logo)
 
+---
 
 >   [!IMPORTANT]
->   ## Entregables
+>   ## ENTREGABLES
 > - [Wireframes del proyecto](https://drive.google.com/file/d/11MuSwKKPkZWU8ZUxOYGKkJo0Y-DNhkDj/view?usp=sharing)
 > - [Tablero de trabajo](https://trello.com/b/6lgv3MVU)
-> - [Diagrama ER](https://drive.google.com/file/d/1aaPP1lWYzfh2Lcw1_oGIBdxjdQADhRfb/view?usp=sharing)
-
-<!-- >[!WARNING]
-> El proyecto se encuentra notoriamente incompleto para la fecha de entrega estipulada...sin embargo, si desea ver los avances realizados tome en cuenta los siguientes puntos:
-> + Clone el repositorio de Github
-> + Una vez clonado el repositorio ejecute los siguientes comandos:
->   1. Debe instalar el proyecto y sus dependencias, para eso utilizar el comando: `npm i` tanto en el la app 'servidor' como en la de 'cliente'.
->   2. Para iniciar el servidor como desarrollador, debe ejecutar el comando `npm rund dev` en la carpeta del proyecto 'servidor' y en la carpeta del proyecto 'cliente', deberá ejecutar el mismo comando.
->   3. **Recomuendo utilizar el endpoint de la vista cliente**. 
->  -->
+> - [Diagrama Relacional](https://drive.google.com/file/d/1aaPP1lWYzfh2Lcw1_oGIBdxjdQADhRfb/view?usp=sharing)

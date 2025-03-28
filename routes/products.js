@@ -16,7 +16,7 @@ router.get('/create', isAdmin, productsController.create);
 // router.get('/create', productsController.create);
 
 // 3. Detalle de un producto particular
-router.get('/:id', isAdmin, productsController.show);
+router.get('/p/:id', isAdmin, productsController.show);
 // router.get('/p/:id', productsController.show);
 
 // 4. Acción de creación

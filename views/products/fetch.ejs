@@ -3,111 +3,88 @@
 
 <%- include('../partials/header')%>
 
-    <head>
-        <link rel="stylesheet" href="../../stylesheets/products/crud-styles.css">
-        <title>
-            <%= title%>
-        </title>
-    </head>
+<head>
+    <link rel="stylesheet" href="../../stylesheets/products/crud-styles.css">
+    <title><%= title %></title>
+</head>
 
-    <body>
+<body>
+    <%- include('../partials/navbar') %>
 
-        <%- include('../partials/navbar')%>
+    <section class="page-header">
+        <h1><%= title %></h1>
+    </section>
 
-            <h1>
-                <%= title%>
-            </h1>
-
-            <a href="/logout">Cerrar sesión</a>
-
-            <div class="form-container">
-                <form action="/products/search" method="get" class="form">
-                    <div class="search-bar">
-                        <input type="text" name="fetch" id="fetch" placeholder="Search..." value="<%= query || '' %>">
-                        <button type="submit" class="fetch-btn">
-                            <ion-icon name="search"></ion-icon>
-                        </button>
-                    </div>
-                </form>
+    <!-- Barra de búsqueda -->
+    <section class="search-section">
+        <form action="/products/search" method="get" class="form">
+            <div class="search-bar">
+                <input type="text" name="fetch" id="fetch" placeholder="Search..." value="<%= query || '' %>">
+                <button type="submit" class="fetch-btn">
+                    <ion-icon name="search"></ion-icon>
+                </button>
             </div>
+        </form>
+    </section>
 
-            <div class="container">
+    <div class="container">
+        <a href="/products/create">
+            <button class="create-btn">&#10010; Create</button>
+        </a>
 
-                <a href="/products/create">
-                    <button class="create-btn">
-                        &#10010; Create
-                    </button>
-                </a>
-
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Brand</th>
-                            <th>Model</th>
-                            <th>Description</th>
-                            <th>Image</th>
-                            <th>Colors</th>
-                            <th>Stock</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% if(products.length > 0){
-
-                            for(let item of products) { %>
-
-                            <tr>
-                                <td>
-                                    <a href="/products/p/<%= item.id%>">
-                                        <%= item.id %>
-                                    </a>
-                                </td>
-                                <td>
-                                    <%= item.brand %>
-                                </td>
-                                <td>
-                                    <%= item.model %>
-                                </td>
-                                <td>
-                                    <%= item.description %>
-                                </td>
-                                <td>
-                                    <img src="<%= item.image %>" alt="<%= item.brand%> <%= item.model%>">
-                                </td>
-                                <td class="colors">
-                                    <p style="background-color: <%=item.color%> "></p>
-                                </td>
-                                <td>
-                                    <%= item.stock %>
-                                </td>
-                                <td>
-                                    <%= item.price %>
-                                </td>
-                                <td class="actions">
-                                    <a href="/products/<%= item.id%>/edit">
-                                        <button class="btn-mod">
-                                            Mod
-                                        </button>
-                                    </a>
-                                    <form action="/products/p/<%= item.id %>?_method=DELETE" method="POST"
-                                        style="display:inline;">
-                                        <button type="submit" class="btn-del"
-                                            onclick="return confirm(' ¿Estás seguro de eliminar este producto?')">
-                                            Del
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <% } } else { %>
-                                <h2>No se encontraron productos.</h2>
-                                <% } %>
-                    </tbody>
-                </table>
-            </div>
-
-    </body>
-
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Colors</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Detail</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let item of products) { %>
+                    <tr>
+                        <td class="text-center"><%= item.id %></td>
+                        <td><p><%= item.name %></p></td>
+                        <td>
+                            <%= item.description ? item.description.substring(0, 50) + '...' : 'No description available' %>
+                        </td>
+                        <td>
+                            <img src="<%= item.image %>" alt="<%= item.brand %> <%= item.model %>" 
+                                class="product-img" loading="lazy">
+                        </td>
+                        <td class="colors">
+                            <% if (item.color) { %>
+                                <span class="color-box" style="background-color: <%= item.color %>;"></span>
+                            <% } else { %>
+                                <p>No color</p>
+                            <% } %>
+                        </td>
+                        <td class="text-center"><strong>$<%= item.price %></strong></td>
+                        <td class="text-center"><%= item.stock %></td>
+                        <td>
+                            <a href="<%= item.detail %>" class="detail-link">View Details</a>
+                        </td>
+                        <td class="actions">
+                            <a href="/products/<%= item.id %>/edit">
+                                <button class="btn-mod">Edit</button>
+                            </a>
+                            <form action="/products/<%= item.id %>?_method=DELETE" method="POST" style="display:inline;">
+                                <button type="submit" class="btn-del"
+                                    onclick="return confirm('¿Estás seguro de eliminar este producto?')">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
 </html>

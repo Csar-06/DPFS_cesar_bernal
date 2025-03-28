@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
     title: 'Landing page',
     slides: [
       '/video/iphone-promo.mp4',
-      '/video/EDZN0157.mp4']
+      '/video/EDZN0157.mp4',]
   });
 });
 

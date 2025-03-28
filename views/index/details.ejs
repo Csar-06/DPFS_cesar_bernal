@@ -20,12 +20,12 @@
             <!-- Modelo 3D -->
             <div class="model-viewer">
               <% if (item.render) { %>
-                <model-viewer src="<%= item.render %>" alt="3D Model" auto-rotate camera-controls
+                <model-viewer src="<%= item.render %>" alt="3D Model" loading="lazy" auto-rotate camera-controls
                     style="height: 400px;">
                 </model-viewer>
             <% } else { %>
                     <img id="fallback-image" src="<%= item.image %>" alt="Product Image"
-                        style="height: 400px;">
+                        loading="lazy" style="height: 400px;">
             <% } %>
             </div>
 

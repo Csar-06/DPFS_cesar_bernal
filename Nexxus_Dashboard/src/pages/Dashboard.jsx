@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BarChart3, Package, ShoppingCart, Users } from "lucide-react"
+import axios from "axios";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -10,21 +11,22 @@ import LatestUser from "../components/LatestUser.jsx";
 import LatestProduct from "../components/LatestProduct.jsx";
 import ProductList from "../components/ProductList.jsx";
 import { fetchUsers, fetchProducts } from "../services/api.js";
+import Navbar from '../components/Navbar'
+
 
 const Dashboard = () => {
   const [data, setData] = useState({ users: 0, products: 0, latestUser: {}, latestProduct: {}, productList: [] });
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const usersRes = await fetchUsers();
         const productsRes = await fetchProducts();
         // console.log(usersRes);
         // console.log(productsRes.products);
-
-        const latest = usersRes.users.length ? usersRes.users[usersRes.users.length - 1] : null;
-        // console.log(latestUser.email);
-
 
         // Sort users by join date to get the latest user
         const latestUser = [...usersRes.users].sort((a, b) => new Date(b.joinDate).getTime() - new Date(a.joinDate).getTime())[0]
@@ -44,10 +46,31 @@ const Dashboard = () => {
 
       } catch (error) {
         console.error("Error fetching data", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get("http://localhost:3000/api/auth/me", { withCredentials: true });
+        setUser(res.data.user);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  // Si no es admin, detener la carga de más datos
+  if (user?.type !== "admin") return;
+
+  if (loading) return <h1>Loading...</h1>;
+  if (!user || user.type !== "admin") return <h1>Access Denied</h1>;
 
   // Format date for display
   const formatDate = (dateString) => {
@@ -57,6 +80,8 @@ const Dashboard = () => {
   return (
     <div className="flex min-h-screen w-full flex-col">
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+        <Navbar user={user} />
+        <p className="text-5xl font-medium mt-6">Bienvenido, {user ? user.firstName : "Invitado"}!</p>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -107,9 +132,9 @@ const Dashboard = () => {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
           <LatestUser user={data.latestUser} />
           <LatestProduct product={data.latestProduct} />
-         
+
         </div>
-         <Tabs defaultValue="all" className="space-y-4"> 
+        <Tabs defaultValue="all" className="space-y-4">
           <div className="flex items-center justify-between">
             <TabsList>
               <TabsTrigger value="all">All Products</TabsTrigger>
@@ -118,11 +143,10 @@ const Dashboard = () => {
           <TabsContent value="all" className="space-y-4">
             <ProductList products={data.productList} />
           </TabsContent>
-        {/*
-          
-          */}
+
         </Tabs>
       </main>
+
     </div>
   );
 };

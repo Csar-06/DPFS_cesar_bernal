@@ -14,6 +14,7 @@ const phonesRoutes = require('./routes/phones')
 const productsRoutes = require('./routes/products')
 const usersRoutesApi = require('./routes/API/user.routes')
 const productsRoutesApi = require('./routes/API/products.routes')
+const authRoutes = require("./routes/API/auth.routes");
 
 const app = express();
 
@@ -27,36 +28,48 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
   secret: 'mi_secreto_super_seguro', // clave "segura"
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // 60 minutos de sesión
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // 60 minutos de sesión
 }));
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
+  if (req.session.user) {
+    req.session.cookie.maxAge = req.session.user.type === "admin"
+      ? 60 * 60 * 1000  // Admin: 1 horas
+      : 48 * 60 * 60 * 1000;  // Cliente: 48 horas
+  }
+  next();
+});
+app.use((req, res, next) => {
   res.locals.user = req.session.user || null; //si no hay sesión, user será null
   next();
 })
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'))
-console.log(path.join(__dirname,'public'));
-app.use(cors({ origin: "http://localhost:5173" })); // Permite todas las solicitudes desde el origen especificado
+console.log(path.join(__dirname, 'public'));
+app.use(cors({
+  origin: "http://localhost:5173", // Permite todas las solicitudes desde el origen especificado
+  credentials: true // Permite el envío de cookies y autenticación
+})); 
 
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/phones', phonesRoutes);
-app.use('/products', productsRoutes); 
-app.use('/products', productsRoutes); 
-app.use('/api/users', usersRoutesApi); 
-app.use('/api/products', productsRoutesApi); 
+app.use('/products', productsRoutes);
+app.use('/products', productsRoutes);
+app.use('/api/users', usersRoutesApi);
+app.use('/api/products', productsRoutesApi);
+app.use("/api/auth", authRoutes);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

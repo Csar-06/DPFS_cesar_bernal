@@ -51,7 +51,7 @@ const productsController = {
 
             });
 
-            return res.render('./products/index', { title: 'CRUD', products, query });
+            return res.render('./products/index', { title: 'Product List', products, query });
         })
             .catch()
     },
@@ -317,7 +317,8 @@ const productsController = {
     fetch: async (req, res) => {
         try {
             const query = req.query.fetch; // Obtiene el término de búsqueda desde la URL
-
+            console.log(query);
+            
             if (!query) {
                 return res.redirect('/products'); // Si no hay consulta, redirigir a la lista de productos
             }
@@ -374,7 +375,7 @@ const productsController = {
 
             });
             console.log(products);
-            return res.render('products/fetch', { title: "Resultados de búsqueda", products, query });
+            return res.render('products/fetch', { title: "Fetch Results", products, query });
         } catch (e) {
             console.log(e);
             return res.send(e);
